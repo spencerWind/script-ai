@@ -1,0 +1,15 @@
+/* import tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* default styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
