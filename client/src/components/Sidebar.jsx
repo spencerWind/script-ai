@@ -23,22 +23,22 @@ const Sidebar = () => {
             </div>
 
             <div className="flex flex-col items-center gap-4">
-                <Link to={"/"}>
+                <Link to={"/u/dashboard"}>
                     <p className="">Dashboard</p>
                 </Link>
-                <Link to={"/transactions"}>
+                <Link to={"/u/transactions"}>
                     <p className="">Transactions</p>
                 </Link>
-                <Link to={"/budget"}>
+                <Link to={"/u/budget"}>
                     <p className="">Budget</p>
                 </Link>
-                <Link to={"/investments"}>
+                <Link to={"/u/investments"}>
                     <p className="">Investments</p>
                 </Link>
-                <Link to={"/assets"}>
+                <Link to={"/u/assets"}>
                     <p className="">Assets</p>
                 </Link>
-                <Link to={"/goals"}>
+                <Link to={"/u/goals"}>
                     <p className="">Goals</p>
                 </Link>
             </div>
