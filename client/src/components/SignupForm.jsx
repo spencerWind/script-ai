@@ -26,11 +26,18 @@ const SignupForm = () => {
             )
             .then((res) => {
                 console.log(res);
-                setFirstName("")
-                setLastName("")
-                setEmail("")
-                setPassword("")
-                setConfirmPassword("")
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                axios
+                    .post("http://localhost:8000/api/user/login", {
+                        email: email,
+                    },
+                    {withCredentials: true})
+                    .then((res) => console.log(res.data))
+                    .catch((err) => console.log(err));
             })
             .catch((err) => {
                 console.log(err);
@@ -50,16 +57,16 @@ const SignupForm = () => {
                             htmlFor="firstName">
                             First Name:
                         </label>
-                            <input
-                                required
-                                className="h-8 rounded text-slate-900 px-2 w-2/3"
-                                type="text"
-                                id="firstName"
-                                value={firstName}
-                                onChange={(e) => {
-                                    setFirstName(e.target.value);
-                                }}
-                            />
+                        <input
+                            required
+                            className="h-8 rounded text-slate-900 px-2 w-2/3"
+                            type="text"
+                            id="firstName"
+                            value={firstName}
+                            onChange={(e) => {
+                                setFirstName(e.target.value);
+                            }}
+                        />
                     </div>
                     <div className="flex flex-row gap-2 items-center">
                         <label
