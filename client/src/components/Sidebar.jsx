@@ -16,33 +16,30 @@ const Sidebar = () => {
 
     return (
         <div className="w-64 p-4 flex flex-col justify-between items-center">
-            <div className="h-16">
-                <Link to={"/"}>
-                    <h1 className="text-lg font-bold">Script Finance</h1>
-                </Link>
-            </div>
-
             <div className="flex flex-col items-center gap-4">
-                <Link to={"/u/dashboard"}>
+                <Link to={"/dashboard"}>
                     <p className="">Dashboard</p>
                 </Link>
-                <Link to={"/u/transactions"}>
+                <Link to={"/transactions"}>
                     <p className="">Transactions</p>
                 </Link>
-                <Link to={"/u/budget"}>
+                <Link to={"/budget"}>
                     <p className="">Budget</p>
                 </Link>
-                <Link to={"/u/investments"}>
+                <Link to={"/investments"}>
                     <p className="">Investments</p>
                 </Link>
-                <Link to={"/u/assets"}>
+                <Link to={"/assets"}>
                     <p className="">Assets</p>
                 </Link>
-                <Link to={"/u/goals"}>
+                <Link to={"/goals"}>
                     <p className="">Goals</p>
                 </Link>
             </div>
             <div className="h-16">
+                <Link to={"/login"}>
+                    <p>Login</p>
+                </Link>
                 <button
                     className="p-2 rounded-xl bg-green-600"
                     onClick={handleThemeSwitch}>

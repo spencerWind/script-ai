@@ -18,7 +18,7 @@ const UserPage = () => {
                 <Routes>
                     <Route
                         default
-                        path="/dashboard/"
+                        path="/dashboard"
                         element={<Dashboard />}
                     />
                     <Route

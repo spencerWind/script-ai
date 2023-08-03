@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Container from "./script-ui/Container";
-import axios from "axios";
+import { useSignUp } from "../hooks/useSignUp";
 
 const SignupForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -8,40 +8,12 @@ const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const { signUp, error, isLoading } = useSignUp();
 
-    const createUser = (e) => {
+    const createUser = async (e) => {
         e.preventDefault();
-        axios
-            .post(
-                "http://localhost:8000/api/user",
-                {
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password,
-                    confirmPassword: confirmPassword,
-                    darkMode: false,
-                },
-                { withCredentials: true }
-            )
-            .then((res) => {
-                console.log(res);
-                setFirstName("");
-                setLastName("");
-                setEmail("");
-                setPassword("");
-                setConfirmPassword("");
-                axios
-                    .post("http://localhost:8000/api/user/login", {
-                        email: email,
-                    },
-                    {withCredentials: true})
-                    .then((res) => console.log(res.data))
-                    .catch((err) => console.log(err));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+        await signUp(firstName, lastName, email, password, confirmPassword);
     };
 
     return (
@@ -54,14 +26,14 @@ const SignupForm = () => {
                     <div className="flex flex-row gap-2 items-center">
                         <label
                             className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="firstName">
+                            htmlFor="signUpFirstName">
                             First Name:
                         </label>
                         <input
                             required
                             className="h-8 rounded text-slate-900 px-2 w-2/3"
                             type="text"
-                            id="firstName"
+                            id="signUpFirstName"
                             value={firstName}
                             onChange={(e) => {
                                 setFirstName(e.target.value);
@@ -71,14 +43,14 @@ const SignupForm = () => {
                     <div className="flex flex-row gap-2 items-center">
                         <label
                             className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="lastName">
+                            htmlFor="signUpLastName">
                             Last Name:
                         </label>
                         <input
                             required
                             className="h-8 w-2/3 rounded text-slate-900 px-2"
                             type="text"
-                            id="lastName"
+                            id="signUpLastName"
                             value={lastName}
                             onChange={(e) => {
                                 setLastName(e.target.value);
@@ -88,14 +60,14 @@ const SignupForm = () => {
                     <div className="flex flex-row gap-2 items-center">
                         <label
                             className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="email">
+                            htmlFor="signUpEmail">
                             Email:
                         </label>
                         <input
                             required
                             className="h-8 w-2/3 rounded text-slate-900 px-2"
                             type="text"
-                            id="email"
+                            id="signUpEmail"
                             value={email}
                             onChange={(e) => {
                                 setEmail(e.target.value);
@@ -105,14 +77,14 @@ const SignupForm = () => {
                     <div className="flex flex-row gap-2 items-center">
                         <label
                             className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="password">
+                            htmlFor="signUpPassword">
                             Password:
                         </label>
                         <input
                             required
                             className="h-8 w-2/3 rounded text-slate-900 px-2"
                             type="password"
-                            id="password"
+                            id="signUpPassword"
                             value={password}
                             onChange={(e) => {
                                 setPassword(e.target.value);
@@ -122,14 +94,14 @@ const SignupForm = () => {
                     <div className="flex flex-row gap-2 items-center">
                         <label
                             className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="confirmPassword">
+                            htmlFor="signUpConfirmPassword">
                             Confirm Password:
                         </label>
                         <input
                             required
                             className="h-8 w-2/3 rounded text-slate-900 px-2"
                             type="password"
-                            id="confirmPassword"
+                            id="signUpConfirmPassword"
                             value={confirmPassword}
                             onChange={(e) => {
                                 setConfirmPassword(e.target.value);
@@ -137,10 +109,14 @@ const SignupForm = () => {
                         />
                     </div>
                     <input
+                        disabled={isLoading}
                         className="h-8 bg-green-500 rounded font-bold"
                         type="submit"
                         value="Create Account"
                     />
+                    {error && <div className="text-red-500"></div>
+                        
+                    }
                 </div>
             </form>
         </Container>

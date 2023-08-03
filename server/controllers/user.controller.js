@@ -3,25 +3,20 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY_DEV;
 const bcrypt = require("bcrypt");
 
+const createToken = (_id) => {
+    return jwt.sign({ userId: _id }, secret, { expiresIn: "1h" });
+};
+
 module.exports.createUser = async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
-        throw new Error("Email already in use");
+        return res.status(400).json({ error: "That user already exists" });
     }
 
     User.create(req.body)
         .then((user) => {
-            const userId = {
-                id: user._id,
-            };
-            const userToken = jwt.sign(userId, secret, {
-                expiresIn: "1h",
-            });
-
-            res.cookie("userToken", userToken, { httpOnly: true }).json({
-                msg: "success",
-                userid: userId,
-            });
+            const userToken = createToken(user._id);
+            res.status(200).json({ user: user, userToken });
         })
         .catch((err) => {
             res.json(err);
@@ -65,7 +60,34 @@ module.exports.deleteUser = (req, res) => {
 };
 
 module.exports.loginUser = async (req, res) => {
-    res.json({ msg: "login user" });
+    const email = req.body.email;
+    const password = req.body.password;
+    if (!email || !password) {
+        return res.status(400).json({ error: "All fields must be filled..." });
+    }
+
+    try {
+        const existingUser = await User.findOne({ email: req.body.email });
+        if (!existingUser) {
+            return res.status(404).json({ error: "Email not in use..." });
+        }
+
+        const match = await bcrypt.compare(password, existingUser.password);
+
+        if (match === false) {
+            return res
+                .status(401)
+                .json({ error: "Password does not match..." });
+        }
+
+        const userToken = createToken(existingUser._id);
+        res.status(200).json({ user: existingUser, userToken });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: "An unexpected error occurred. Please try again later.",
+        });
+    }
 };
 
 module.exports.logoutUser = (req, res) => {
