@@ -33,11 +33,15 @@ const Navigation = () => {
                     backgroundColor: "bg-slate-900",
                     textColor: "text-slate-100",
                 }}>
-                {user && <p>{user.email}</p>}
+                {user && <>
+                    <Link to="/dashboard">
+                        <p>Dashboard</p>
+                    </Link>
+                </>}
                 {user ? (
                     <button onClick={logOutHandler}>Log Out</button>
                 ) : (
-                    <Link to="/login">Log In</Link>
+                    <Link to="/">Log In</Link>
                 )}
                 <button
                     className="p-2 rounded-xl bg-green-600"

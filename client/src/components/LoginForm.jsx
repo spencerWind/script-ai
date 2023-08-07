@@ -2,16 +2,15 @@ import Container from "../components/script-ui/Container";
 import { useState } from "react";
 import { useLogIn } from "../hooks/useLogin";
 
-
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {logIn, error, isLoading} = useLogIn()
+    const { logIn, error, isLoading } = useLogIn();
 
     const loginUser = async (e) => {
         e.preventDefault();
-        
-        await logIn(email, password)
+
+            await logIn(email, password);
     };
 
     return (
@@ -56,7 +55,7 @@ const LoginForm = () => {
                         />
                     </div>
                     <input
-                        disabled = {isLoading}
+                        disabled={isLoading}
                         className="h-8 bg-green-500 rounded font-bold"
                         type="submit"
                         value="Login"
