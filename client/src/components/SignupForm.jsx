@@ -17,8 +17,8 @@ const SignupForm = () => {
     };
 
     return (
-        <Container className=" rounded border-2 p-8 glass-card">
-            <h1 className="mb-6 text-green-500 font-semibold text-lg">
+        <div className="rounded p-4 glass-card w-full max-w-[400px] mb-16">
+            <h1 className="mb-6 text-green-600 font-semibold text-lg">
                 Sign Up
             </h1>
             <form onSubmit={createUser}>
@@ -119,7 +119,7 @@ const SignupForm = () => {
                     }
                 </div>
             </form>
-        </Container>
+        </div>
     );
 };
 

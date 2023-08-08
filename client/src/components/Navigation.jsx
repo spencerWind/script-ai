@@ -4,7 +4,6 @@ import NavItems from "./script-ui/Navigation/NavItems";
 import NavTitle from "./script-ui/Navigation/NavTitle";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogOut } from "../hooks/useLogOut";
-import { Link } from "react-router-dom";
 
 const Navigation = () => {
     const { logOut } = useLogOut();
@@ -27,27 +26,28 @@ const Navigation = () => {
 
     return (
         <NavBar>
-            <NavTitle>Script UI</NavTitle>
+            <NavTitle style={"font-extrabold text-sm pr-16 text-green-600"}>
+                Script Finance
+            </NavTitle>
             <NavItems
                 mobile={{
                     backgroundColor: "bg-slate-900",
                     textColor: "text-slate-100",
                 }}>
-                {user && <>
-                    <Link to="/dashboard">
-                        <p>Dashboard</p>
-                    </Link>
-                </>}
-                {user ? (
-                    <button onClick={logOutHandler}>Log Out</button>
-                ) : (
-                    <Link to="/">Log In</Link>
-                )}
                 <button
-                    className="p-2 rounded-xl bg-green-600"
+                    className="font-medium text-sm"
                     onClick={handleThemeSwitch}>
                     Dark Mode
                 </button>
+                {user ? (
+                    <button
+                        onClick={logOutHandler}
+                        className=" text-sm font-medium">
+                        Log Out
+                    </button>
+                ) : (
+                    ""
+                )}
             </NavItems>
         </NavBar>
     );

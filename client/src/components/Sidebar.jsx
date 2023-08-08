@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
 
     return (
-        <div className="w-64 p-4 flex flex-col justify-between items-center">
-            <div className="flex flex-col items-center gap-4">
-                <Link to={"/dashboard"}>
-                    <p className="">Dashboard</p>
+        <div className="max-lg:hidden">
+            <div className="flex flex-col text-lg gap-8 font-bold underline pr-16  py-32">
+                <Link to={"/"}>
+                    <p className="text-center">Dashboard</p>
                 </Link>
                 <Link to={"/transactions"}>
-                    <p className="">Transactions</p>
+                    <p className="text-center">Transactions</p>
                 </Link>
                 <Link to={"/budget"}>
-                    <p className="">Budget</p>
+                    <p className="text-center">Budget</p>
                 </Link>
                 <Link to={"/goals"}>
-                    <p className="">Goals</p>
+                    <p className="text-center">Goals</p>
                 </Link>
             </div>
         </div>

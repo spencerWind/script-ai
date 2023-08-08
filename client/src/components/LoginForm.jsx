@@ -14,8 +14,8 @@ const LoginForm = () => {
     };
 
     return (
-        <Container className=" rounded border-2 p-8 glass-card">
-            <h1 className="mb-6 text-green-500 font-semibold text-lg">
+        <div className="rounded p-4 glass-card w-full max-w-[400px] h-max">
+            <h1 className="mb-6 text-green-600 font-semibold text-lg">
                 Log In
             </h1>
             <form onSubmit={loginUser}>
@@ -56,13 +56,13 @@ const LoginForm = () => {
                     </div>
                     <input
                         disabled={isLoading}
-                        className="h-8 bg-green-500 rounded font-bold"
+                        className="h-8 bg-green-500 text-slate-900 rounded font-bold"
                         type="submit"
                         value="Login"
                     />
                 </div>
             </form>
-        </Container>
+        </div>
     );
 };
 

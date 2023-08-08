@@ -1,22 +1,22 @@
 const Dashboard = () => {
     return (
-        <div className="grid grid-cols-3 grid-rows-4 gap-8 h-full">
-            <div className="border border-black dark:border-white col-span-2 row-span-2 flex items-center justify-center">
+        <div className="lg:grid grid-cols-3 grid-rows-4 gap-16 h-full w-full">
+            <div className="col-span-2 row-span-2 glass-card p-4">
                 <p>Finance Overview</p>
             </div>
-            <div className="border border-black dark:border-white flex items-center justify-center row-span-2">
+            <div className="row-span-2 glass-card p-4">
                 <p>Transactions</p>
             </div>
-            <div className="border border-black dark:border-white flex items-center justify-center col-span-2">
+            <div className="col-span-2 glass-card p-4">
                 <p>Budget</p>
             </div>
-            <div className="border border-black dark:border-white flex items-center justify-center row-span-2">
+            <div className="row-span-2 glass-card p-4">
                 <p>Investments</p>
             </div>
-            <div className="border border-black dark:border-white flex items-center justify-center">
+            <div className="glass-card p-4">
                 <p>Assets</p>
             </div>
-            <div className="border border-black dark:border-white flex items-center justify-center">
+            <div className="glass-card p-4">
                 <p>Goals</p>
             </div>
         </div>

@@ -37,7 +37,7 @@ const NavItems = ({ children, mobile }) => {
                 className={
                     mobileSize
                         ? `fixed z-10 top-0 right-[-100%] w-full h-screen ${backgroundColor} flex flex-col items-center gap-12 justify-center ${textColor}`
-                        : "flex flex-row items-center gap-12 lg:gap-16"
+                        : "flex flex-row items-center gap-12 lg:gap-8"
                 }>
                 {React.Children.map(children, (child) => {
                     if (React.isValidElement(child)) {
@@ -53,8 +53,8 @@ const NavItems = ({ children, mobile }) => {
                             })
                         );
                     }}
-                    className="w-8 h-8 border md:hidden">
-                    X
+                    className="w-16 h-16 md:hidden">
+                    <p className="text-4xl font-black">X</p>
                 </button>
             </motion.ul>
             <button

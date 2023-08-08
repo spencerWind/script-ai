@@ -1,29 +1,23 @@
 // react-router-dom imports
 import { Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./views/LoginPage";
+import HomePage from "./views/HomePage";
 import UserPage from "./views/UserPage";
-import Container from "./components/script-ui/Container";
-import NavBar from "./components/Navigation";
 import { useAuthContext } from "./hooks/useAuthContext";
-import Dashboard from "./views/Dashboard";
-import Sidebar from "./components/Sidebar";
 
 // App
 const App = () => {
     const { user } = useAuthContext();
 
     return (
-        <div className="min-h-screen bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-            <Container className="m-auto">
-                <NavBar></NavBar>
+        <div className="min-h-screen bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+            <div className="m-auto">
                 <div className="flex flex-row">
-                    {user ? <Sidebar /> : ""}
                     <div className="w-full">
                         <Routes>
                             <Route
                                 path="/"
                                 element={
-                                    user ? <Dashboard /> : <LoginPage />
+                                    user ? <UserPage /> : <HomePage />
                                 }></Route>
                             <Route
                                 path="/*"
@@ -33,7 +27,7 @@ const App = () => {
                         </Routes>
                     </div>
                 </div>
-            </Container>
+            </div>
         </div>
     );
 };
