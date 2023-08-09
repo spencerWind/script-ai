@@ -8,6 +8,7 @@ import NavBar from "../components/Navigation";
 import Sidebar from "../components/Sidebar";
 
 const UserPage = () => {
+
     return (
         <Container>
             <NavBar />

@@ -16,5 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 
 require("./config/mongoose.config");
 require("./routes/user.routes")(app);
+require("./routes/plaid.routes")(app);
 
 app.listen(8000, () => console.log(`Listening on port 8000`));
