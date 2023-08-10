@@ -13,14 +13,10 @@ const configuration = new Configuration({
 const plaidClient = new PlaidApi(configuration);
 
 module.exports = (app) => {
-    app.get("/api/plaid/hello", (req, res) => {
-        res.json({ message: "hello plaid" });
-    });
-
     app.post("/api/plaid/create_link_token", async function (req, res) {
         const plaidRequest = {
             user: {
-                client_user_id: "user",
+                client_user_id: req.body.client_user_id,
             },
             client_name: "Script Finance",
             products: ["auth"],
@@ -50,6 +46,7 @@ module.exports = (app) => {
                 );
                 // These values should be saved to a persistent database and
                 // associated with the currently signed-in user
+                
                 const accessToken = plaidResponse.data.access_token;
                 res.json({ accessToken });
             } catch (err) {

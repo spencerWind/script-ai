@@ -3,10 +3,14 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY_DEV;
 const bcrypt = require("bcrypt");
 
+
+
+// create web token
 const createToken = (_id) => {
     return jwt.sign({ userId: _id }, secret, { expiresIn: "1h" });
 };
 
+// create user
 module.exports.createUser = async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
@@ -23,6 +27,7 @@ module.exports.createUser = async (req, res) => {
         });
 };
 
+// Retrieve User
 module.exports.getAllUsers = (req, res) => {
     User.find({})
         .then((users) => {
@@ -35,6 +40,7 @@ module.exports.getAllUsers = (req, res) => {
         });
 };
 
+// Update user
 module.exports.updateUser = (req, res) => {
     User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         .then((updatedUser) => {
@@ -47,6 +53,7 @@ module.exports.updateUser = (req, res) => {
         });
 };
 
+// Delete User
 module.exports.deleteUser = (req, res) => {
     User.deleteOne({ _id: req.params.id })
         .then((res) => {
@@ -59,6 +66,7 @@ module.exports.deleteUser = (req, res) => {
         });
 };
 
+// Log In User
 module.exports.loginUser = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -90,6 +98,7 @@ module.exports.loginUser = async (req, res) => {
     }
 };
 
+// Log Out User
 module.exports.logoutUser = (req, res) => {
     res.clearCookie("userToken");
     res.sendStatus(200);
