@@ -5,9 +5,9 @@ import Container from "../components/script-ui/Container";
 const LoginPage = () => {
     return (
         <div className="">
-            <div className="lg:py-32 landing-page-background">
+            <div className="py-32 landing-page-background">
                 <Container>
-                    <div className="w-3/5">
+                    <div className="lg:w-3/5">
                         <h2 className="max-lg:text-sm font-bold text-slate-900 mb-2 underline">
                             Script Finance
                         </h2>
@@ -27,19 +27,19 @@ const LoginPage = () => {
                             towards achieving financial freedom.
                         </p>
                         <div className="flex flex-row items-center gap-4">
-                            <button className="bg-green-500 text-slate-900  w-20 h-8 rounded font-bold">
+                            {/* <button className="bg-green-500 text-slate-900  w-20 h-8 rounded font-bold">
                                 Sign Up
                             </button>
                             <button className="font-bold w-20 h-8 text-slate-900">
                                 Log In
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </Container>
             </div>
-            <div className="lg:py-32">
+            <div className="py-32">
                 <Container>
-                    <div className="lg:mb-16 lg:flex flex-row items-center w-full">
+                    <div className="mb-16 lg:flex flex-row items-center w-full">
                         <div className="lg:w-2/5 glass-card p-4">
                             <h2 className="max-lg:text-sm text-green-600 mb-1">
                                 Feature
@@ -58,14 +58,14 @@ const LoginPage = () => {
                                 success today!
                             </p>
                         </div>
-                        <div className="lg:w-3/5 lg:h-64 lg:flex items-center justify-end">
+                        {/* <div className="lg:w-3/5 lg:h-64 lg:flex items-center justify-end">
                             <p className="">Graphic</p>
-                        </div>
+                        </div> */}
                     </div>
-                    <div className="lg:mb-16 lg:flex flex-row items-center w-full">
-                        <div className="lg:w-3/5 lg:h-64lg:flex items-center">
+                    <div className="mb-16 lg:flex flex-row items-center w-full">
+                        {/* <div className="lg:w-3/5 lg:h-64lg:flex items-center">
                             <p className="">Graphic</p>
-                        </div>
+                        </div> */}
                         <div className="lg:w-2/5 glass-card p-4">
                             <h2 className="max-lg:text-sm text-green-600 mb-1">
                                 Feature
@@ -104,13 +104,13 @@ const LoginPage = () => {
                                 financial journey.
                             </p>
                         </div>
-                        <div className="lg:w-3/5 lg:h-64 lg:flex items-center justify-end">
+                        {/* <div className="lg:w-3/5 lg:h-64 lg:flex items-center justify-end">
                             <p className="">Graphic</p>
-                        </div>
+                        </div> */}
                     </div>
                 </Container>
             </div>
-            <div className="lg:py-32">
+            <div className="my-32">
                 <Container className={"lg:flex flex-col"}>
                     <div>
                         <h1 className="text-center font-bold text-lg mb-16">
@@ -123,12 +123,6 @@ const LoginPage = () => {
                     </div>
                 </Container>
             </div>
-            <footer className="lg:py-16">
-                <Container>
-                    <p className="text-sm text-end">A Script Technologies Project</p>
-                    <p className="text-sm text-end">Developer: Spencer Wind</p>
-                </Container>
-            </footer>
         </div>
     );
 };

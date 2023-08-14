@@ -3,21 +3,17 @@ import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export const usePlaidFetch = () => {
-    const { user } = useAuthContext();
     const [linkToken, setLinkToken] = useState("");
+    const { user } = useAuthContext();
     const [publicToken, setPublicToken] = useState("");
 
     axios.defaults.baseURL = "http://localhost:8000";
 
     useEffect(() => {
-        fetchCreateLinkToken();
+        createLinkToken();
     }, []);
 
-    function PlaidAuth() {
-        linkAndSaveAccount();
-    }
-
-    async function linkAndSaveAccount() {
+    async function linkAccount(publicToken) {
         let access_token = await axios.post(
             "/api/plaid/exchange_public_token",
             {
@@ -40,13 +36,14 @@ export const usePlaidFetch = () => {
         });
     }
 
-    async function fetchCreateLinkToken() {
-        await axios
+    async function createLinkToken() {
+        axios
             .post("/api/plaid/create_link_token", {
                 client_user_id: user._id,
             })
             .then((res) => {
-                console.log(res);
+                console.log("successfully created token");
+                console.log(res.data.link_token);
                 setLinkToken(res.data.link_token);
             })
             .catch((err) => {
@@ -54,7 +51,7 @@ export const usePlaidFetch = () => {
             });
     }
 
-    async function linkAccount(accountType, accessToken, accountId) {
+    async function saveAccount(accountType, accessToken, accountId) {
         const userId = user._id;
 
         axios
@@ -73,10 +70,9 @@ export const usePlaidFetch = () => {
     }
 
     return {
-        linkToken,
         publicToken,
         setPublicToken,
-        fetchCreateLinkToken,
-        PlaidAuth,
+        createLinkToken,
+        linkToken,
     };
 };

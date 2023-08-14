@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Container from "./script-ui/Container";
 import { useSignUp } from "../hooks/useSignUp";
 
 const SignupForm = () => {
@@ -114,7 +113,7 @@ const SignupForm = () => {
                         type="submit"
                         value="Create Account"
                     />
-                    {error && <div className="text-red-500"></div>
+                    {error && <div className="text-red-500">{error}</div>
                         
                     }
                 </div>

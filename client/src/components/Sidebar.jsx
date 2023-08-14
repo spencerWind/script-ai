@@ -5,7 +5,7 @@ const Sidebar = () => {
     return (
         <div className="max-lg:hidden">
             <div className="flex flex-col text-lg gap-8 font-bold underline pr-16  py-32">
-                <Link to={"/"}>
+                {/* <Link to={"/"}>
                     <p className="text-center">Dashboard</p>
                 </Link>
                 <Link to={"/transactions"}>
@@ -13,7 +13,7 @@ const Sidebar = () => {
                 </Link>
                 <Link to={"/budget"}>
                     <p className="text-center">Budget</p>
-                </Link>
+                </Link> */}
                 <Link to={"/goals"}>
                     <p className="text-center">Goals</p>
                 </Link>

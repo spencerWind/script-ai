@@ -15,15 +15,19 @@ const App = () => {
                     <div className="w-full">
                         <Routes>
                             <Route
-                                path="/"
+                                path="/login"
                                 element={
                                     user ? <UserPage /> : <HomePage />
                                 }></Route>
-                            <Route
-                                path="/*"
-                                element={
-                                    user ? <UserPage /> : <Navigate to="/" />
-                                }></Route>
+                                <Route
+                                    path="/"
+                                    element={
+                                        user ? (
+                                            <UserPage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }></Route>
                         </Routes>
                     </div>
                 </div>

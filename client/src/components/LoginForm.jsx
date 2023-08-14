@@ -1,4 +1,3 @@
-import Container from "../components/script-ui/Container";
 import { useState } from "react";
 import { useLogIn } from "../hooks/useLogin";
 
@@ -60,6 +59,7 @@ const LoginForm = () => {
                         type="submit"
                         value="Login"
                     />
+                    {error && <div className="text-red-500">{error}</div>}
                 </div>
             </form>
         </div>

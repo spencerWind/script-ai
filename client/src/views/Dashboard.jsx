@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 import { usePlaidFetch } from "../hooks/usePlaidFetch";
 import { usePlaidLink } from "react-plaid-link";
+import PlaidLink from "../components/PlaidLink";
 
 const Dashboard = () => {
-    const { linkToken, setPublicToken, PlaidAuth } =
-        usePlaidFetch();
+    const { linkToken, linkAccount, createLinkToken } = usePlaidFetch();
 
     const { open, ready } = usePlaidLink({
         token: linkToken,
         onSuccess: (public_token, metadata) => {
-            setPublicToken(public_token);
-            PlaidAuth();
+            console.log("success");
         },
     });
 
@@ -29,7 +28,10 @@ const Dashboard = () => {
                 <h3 className="text-sm mb-4">Quick Actions</h3>
                 <div className="flex flex-wrow gap-4 flex-wrap">
                     <button
-                        onClick={() => open()}
+                        onClick={() => {
+                            console.log(linkToken);
+                            open();
+                        }}
                         disabled={!ready}
                         className="font-medium text-slate-100 bg-purple-600 px-2 py-1 rounded">
                         Link Account
