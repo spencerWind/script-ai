@@ -25,14 +25,14 @@ export const useLogIn = () => {
                 { withCredentials: true }
             )
             .then((res) => {
-                console.log(res.data);
+                console.log(res);
                 localStorage.setItem("user", JSON.stringify(res));
                 dispatch({ type: "LOGIN", payload: res.data.user });
                 setIsLoading(false);
             })
             .catch((err) => {
                 setIsLoading(false);
-                setError(err.response.data.error);
+                setError(err);
                 console.log(err);
             });
     };

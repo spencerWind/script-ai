@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import axios from "axios";
-import { useSavingsGoalContext } from "../hooks/useSavingsGoalContext";
+import { useSavingsGoalContext } from "../../hooks/useSavingsGoalContext";
 
 const GoalForm = () => {
     const { user } = useAuthContext();

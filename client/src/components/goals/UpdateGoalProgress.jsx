@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useSavingsGoalContext } from "../hooks/useSavingsGoalContext";
+import { useSavingsGoalContext } from "../../hooks/useSavingsGoalContext";
 import { useState } from "react";
 
 const UpdateGoalProgress = ({ savingsGoal }) => {
@@ -14,7 +14,6 @@ const UpdateGoalProgress = ({ savingsGoal }) => {
     };
 
     const updateGoalProgress = async (e) => {
-
         e.preventDefault();
 
         await axios
@@ -49,7 +48,7 @@ const UpdateGoalProgress = ({ savingsGoal }) => {
                 <form onSubmit={updateGoalProgress}>
                     <div className="flex flex-row gap-2 items-center">
                         <input
-                        placeholder="amount"
+                            placeholder="amount"
                             required
                             className="h-8 w-32 rounded text-slate-900 px-2"
                             type="number"

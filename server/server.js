@@ -19,5 +19,6 @@ require("./routes/user.routes")(app);
 require("./routes/plaid.routes")(app);
 require("./routes/linkedAccount.routes")(app);
 require("./routes/savingsGoal.routes")(app);
+require("./routes/budget.routes")(app)
 
 app.listen(8000, () => console.log(`Listening on port 8000`));

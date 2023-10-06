@@ -1,36 +1,11 @@
-import { useEffect } from "react";
 import { useSavingsGoalContext } from "../hooks/useSavingsGoalContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import axios from "axios";
-import GoalDisplay from "../components/GoalDisplay";
-import GoalForm from "../components/GoalForm";
+import GoalDisplay from "../components/goals/GoalDisplay";
+import GoalForm from "../components/goals/GoalForm";
 
 const Goals = () => {
-    const { savingsGoals, dispatch } = useSavingsGoalContext();
+    const { savingsGoals } = useSavingsGoalContext();
     const { user } = useAuthContext();
-
-    useEffect(() => {
-        const fetchSavingsGoals = async () => {
-            await axios
-                .get("http://localhost:8000/api/goal/fetch", {
-                    params: {
-                        userId: user._id,
-                    },
-                })
-                .then((savingsGoals) => {
-                    dispatch({
-                        type: "SET_SAVINGS_GOALS",
-                        payload: savingsGoals.data,
-                    });
-                    console.log("Success: ", savingsGoals.data);
-                })
-                .catch((err) => {
-                    console.log("Error fetching goals: ", err);
-                });
-        };
-
-        fetchSavingsGoals();
-    }, []);
 
     return (
         <div className="relative">
@@ -56,7 +31,7 @@ const Goals = () => {
                     <GoalForm />
                 </div>
             </div>
-            <div className="p-4 glass-card col-span-2 flex flex-col gap-4 mb-16">
+            <div className="p-4 col-span-2 flex flex-col gap-4 mb-16">
                 <h3>All goals</h3>
                 {savingsGoals &&
                     savingsGoals

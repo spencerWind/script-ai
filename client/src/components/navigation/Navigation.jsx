@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import NavBar from "./script-ui/Navigation/NavBar";
-import NavItems from "./script-ui/Navigation/NavItems";
-import NavTitle from "./script-ui/Navigation/NavTitle";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useLogOut } from "../hooks/useLogOut";
+import NavBar from "../script-ui/Navigation/NavBar";
+import NavItems from "../script-ui/Navigation/NavItems";
+import NavTitle from "../script-ui/Navigation/NavTitle";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogOut } from "../../hooks/useLogOut";
 
 const Navigation = () => {
     const { logOut } = useLogOut();

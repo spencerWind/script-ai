@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useSavingsGoalContext } from "../hooks/useSavingsGoalContext";
+import { useSavingsGoalContext } from "../../hooks/useSavingsGoalContext";
 
 const PinGoal = ({ savingsGoal }) => {
     const { dispatch } = useSavingsGoalContext();

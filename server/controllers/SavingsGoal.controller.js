@@ -15,7 +15,7 @@ module.exports.createSavingsGoal = async (req, res) => {
     SavingsGoal.create(req.body)
         .then((savingsGoal) => {
             res.status(200).json({
-                message: "Savings goal auccessfully created",
+                message: "Savings goal successfully created",
                 savingsGoal: savingsGoal,
             });
         })
@@ -25,7 +25,7 @@ module.exports.createSavingsGoal = async (req, res) => {
         });
 };
 
-// Retrieve savingsGoal
+// Retrieve savingsGoal's
 module.exports.getSavingsGoals = async (req, res) => {
     const { userId } = req.query;
 
@@ -70,7 +70,7 @@ module.exports.updateSavingsGoal = async (req, res) => {
         });
 };
 
-// Delete User
+// Delete savingsGoal
 module.exports.deleteSavingsGoal = async (req, res) => {
     const { user, _id } = req.query;
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CompleteGoal from "./CompleteGoal";
 import PinGoal from "./PinGoal";
 import DeleteGoal from "./DeleteGoal";
-import UpdateGoalProgress from "./UpdateGoalProgress"
+import UpdateGoalProgress from "./UpdateGoalProgress";
 
 const GoalDisplay = ({ savingsGoal }) => {
     const [progressWidth, setProgressWidth] = useState(0);
@@ -24,7 +24,10 @@ const GoalDisplay = ({ savingsGoal }) => {
     }, [savingsGoal]);
 
     return (
-        <div className={`p-4 rounded bg-[rgba(139,92,246,0.3)] ${savingsGoal.completed && "opacity-50"} lg:flex gap-4  justify-between relative`}>
+        <div
+            className={`p-4 rounded glass-card ${
+                savingsGoal.completed && "opacity-50"
+            } lg:flex gap-4  justify-between relative`}>
             <div className="lg:w-1/2 max-lg:mb-8">
                 {" "}
                 <h1 className="font-medium text-3xl mb-4   leading-none">
@@ -37,13 +40,12 @@ const GoalDisplay = ({ savingsGoal }) => {
                     </span>
                 </p>
                 <div>
-                    <p className="mb-2">
-                        <span className="font-semibold">
+                    <p className="flex items-center gap-2 mb-2">
+                        <span className="text-3xl font-bold text-purple-500">
                             ${savingsGoal.currentAmount}
-                        </span>{" "}
-                        /{" "}
-                        <span className="font-semibold">
-                            ${savingsGoal.targetAmount}
+                        </span>
+                        <span className="text-sm text-purple-800 dark:text-purple-300">
+                            / ${savingsGoal.targetAmount}
                         </span>
                     </p>
                     <div className="border border-green-500 h-8 rounded-2xl bg-slate-100 overflow-hidden mb-4">

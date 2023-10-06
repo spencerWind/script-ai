@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSignUp } from "../hooks/useSignUp";
+import { useSignUp } from "../../hooks/useSignUp";
 
 const SignupForm = () => {
     const [firstName, setFirstName] = useState("");

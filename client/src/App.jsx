@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./views/HomePage";
 import UserPage from "./views/UserPage";
 import { useAuthContext } from "./hooks/useAuthContext";
+import CreateBudgetModal from "./components/budget/CreateBudgetModal";
 
 // App
 const App = () => {
@@ -15,23 +16,26 @@ const App = () => {
                     <div className="w-full">
                         <Routes>
                             <Route
-                                path="/login"
+                                path="/*"
                                 element={
                                     user ? <UserPage /> : <HomePage />
                                 }></Route>
-                                <Route
-                                    path="/"
-                                    element={
-                                        user ? (
-                                            <UserPage />
-                                        ) : (
-                                            <Navigate to="/login" />
-                                        )
-                                    }></Route>
+                            {/* <Route
+                                path="*"
+                                element={
+                                    user ? (
+                                        <UserPage />
+                                    ) : (
+                                        <Navigate to="/login" />
+                                    )
+                                }></Route> */}
                         </Routes>
                     </div>
                 </div>
             </div>
+
+            {/* Modals */}
+            <CreateBudgetModal />
         </div>
     );
 };
