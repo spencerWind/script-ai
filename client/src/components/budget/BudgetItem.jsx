@@ -6,14 +6,10 @@ import BudgetItemDisplay from "./BudgetItemDisplay";
 const BudgetItem = ({ budget }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const [categoryName, setCategoryName] = useState("");
-    const [currentAmount, setCurrentAmount] = useState("");
-    const [targetAmount, setTargetAmount] = useState("");
-
     return (
-        <div className="border-t py-4 relative">
+        <div className="border-t py-4">
             <div className=" flex flex-row items-center justify-between ">
-                <div className="flex flex-row items-center gap-2 text-lg font-bold">
+                <div className="flex flex-row items-center gap-2 text-lg">
                     <img
                         src={dollarIcon}
                         alt="icon"

@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import DateTimeUtils from "../../utilities/DateTimeUtils";
 import DeleteBudget from "./DeleteBudget";
 import UpdateBudgetModal from "./UpdateBudgetModal";
-import UpdateBudgetProgress from "./UpdateBudgetProgress";
+import UpdateBudgetProgress from "./UpdateBudgetProgressModal";
+import SubHeader from "../script-ui/Subheader";
 
 const BudgetItemDisplay = ({ budget }) => {
     // daily spending
@@ -30,27 +31,27 @@ const BudgetItemDisplay = ({ budget }) => {
             <UpdateBudgetModal budget={budget} />
             <UpdateBudgetProgress budget={budget} />
             <div className="mb-4">
-                <h3 className="font-medium mb-1">Daily</h3>
+                <SubHeader styles="mb-1">Daily Spending</SubHeader>
                 <div className="grid grid-cols-2">
                     <div className="flex  items-center gap-4">
-                        <h3 className="font-light">Current Spending:</h3>
+                        <h3 className="font-light">Current:</h3>
                         <p className=" text-base">${dailySpending}</p>
                     </div>
                     <div className="flex  items-center gap-4">
-                        <h3 className="font-light">Target Spending:</h3>
+                        <h3 className="font-light">Target:</h3>
                         <p className=" text-base">${targetDailySpending}</p>
                     </div>
                 </div>
             </div>
             <div className="mb-8">
-                <h3 className="font-medium mb-1">Weekly</h3>
+                <SubHeader styles={"mb-1"}>Weekly Spending</SubHeader>
                 <div className="grid grid-cols-2">
                     <div className="flex  items-center gap-4">
-                        <h3 className="font-light">Current Spending:</h3>
+                        <h3 className="font-light">Current:</h3>
                         <p className=" text-base">${weeklySpending}</p>
                     </div>
                     <div className="flex  items-center gap-4">
-                        <h3 className="font-light">Target Spending:</h3>
+                        <h3 className="font-light">Target:</h3>
                         <p className=" text-base">${targetWeeklySpending}</p>
                     </div>
                 </div>
@@ -59,7 +60,7 @@ const BudgetItemDisplay = ({ budget }) => {
                 <button
                     onClick={() => {
                         document
-                            .getElementById("updateBudgetProgressForm")
+                            .getElementById("updateBudgetProgressModal")
                             .classList.remove("hidden");
                     }}
                     className="h-8 rounded border-2 px-2 text-green-600">

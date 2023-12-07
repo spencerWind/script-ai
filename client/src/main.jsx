@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { SavingsGoalContextProvider } from "./context/SavingsGoalContext";
 import { BudgetContextProvider } from "./context/BudgetContext";
+import { TransactionContextProvider } from "./context/TransactionContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <AuthContextProvider>
                 <BudgetContextProvider>
                     <SavingsGoalContextProvider>
-                        <App />
+                        <TransactionContextProvider>
+                            <App />
+                        </TransactionContextProvider>
                     </SavingsGoalContextProvider>
                 </BudgetContextProvider>
             </AuthContextProvider>

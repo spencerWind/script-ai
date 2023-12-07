@@ -1,17 +1,45 @@
+import Header from "../components/script-ui/Header";
+import { useTransactionContext } from "../hooks/useTransactionContext";
+import TransactionItem from "../components/transactions/TransactionItem";
+import CreateTransactionForm from "../components/transactions/CreateTransactionForm";
+
 const Transactions = () => {
+    const { transactions } = useTransactionContext();
+
     return (
-        <div className="h-full grid grid-cols-2 grid-rows-4 gap-8">
-            <div className="border border-black dark:border-white col-span-2 row-span-2 flex justify-center items-center">
-                <p>All Accounts</p>
+        <div className="h-full lg:flex gap-16">
+            <div className="lg:w-2/3 glass-card p-4 mb-16">
+                <Header styles={"p-2"}>All Transactions</Header>
+                <div className="border-b flex px-4 text-sm font-medium">
+                    <span className="w-1/3">Name</span>
+                    <span className="w-1/3 text-center">Category</span>
+                    <span className="w-1/3 text-end">Amount</span>
+                </div>
+                <div>
+                    {transactions &&
+                        transactions.map((transaction) => (
+                            <TransactionItem
+                                key={transaction._id}
+                                transaction={transaction}
+                            />
+                        ))}
+                </div>
             </div>
-            <div className="border border-black dark:border-white row-span-2 flex justify-center items-center">
-                <p>Transaction List</p>
-            </div>
-            <div className="border border-black dark:border-white flex justify-center items-center">
-                <p>Categories</p>
-            </div>
-            <div className="border border-black dark:border-white flex justify-center items-center">
-                <p>Edit Transactions</p>
+            <div className="lg:w-1/3">
+                <div className=" h-max glass-card p-4 mb-16">
+                    <Header styles={"p-2 border-b"}>Add Transaction</Header>
+                    <CreateTransactionForm />
+                </div>
+                <div className="glass-card p-4">
+                    <Header styles={"p-2 border-b mb-4"}>Actions</Header>
+                    <button onClick={() => {
+                        document
+                            .getElementById("clearTransactionsModal")
+                            .classList.remove("hidden");
+                    }} className="h-8 px-2 rounded bg-purple-900 text-slate-50 text-sm">
+                        Clear Transactions
+                    </button>
+                </div>
             </div>
         </div>
     );

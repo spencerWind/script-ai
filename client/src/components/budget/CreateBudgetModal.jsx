@@ -26,7 +26,9 @@ const CreateBudgetModal = () => {
                 console.log("Success: ", budget.data);
                 setCategoryName("");
                 setTotalAmount("");
-                document.getElementById("createBudgetModal").classList.add("hidden")
+                document
+                    .getElementById("createBudgetModal")
+                    .classList.add("hidden");
             })
             .catch((err) => {
                 console.log("Error: ", err);

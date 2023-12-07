@@ -11,13 +11,13 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useSavingsGoalContext } from "../hooks/useSavingsGoalContext";
-import UpdateBudgetForm from "../components/budget/UpdateBudgetModal";
+import {useTransactionContext} from "../hooks/useTransactionContext"
 
 const UserPage = () => {
     const { user } = useAuthContext();
     const { dispatch: dispatchBudget } = useBudgetContext();
-    const { dispatch: dispatchSavingsGoals } =
-        useSavingsGoalContext();
+    const { dispatch: dispatchSavingsGoals } = useSavingsGoalContext();
+    const { dispatch: dispatchTransactions} = useTransactionContext()
 
     useEffect(() => {
         const fetchSavingsGoals = async () => {
@@ -63,6 +63,28 @@ const UserPage = () => {
         };
 
         fetchBudgets();
+    }, []);
+
+    useEffect(() => {
+        const fetchTransactions = async () => {
+            await axios
+                .get("http://localhost:8000/api/transaction/fetch", {
+                    params: {
+                        userId: user._id,
+                    },
+                })
+                .then((transactions) => {
+                    dispatchTransactions({
+                        type: "SET_TRANSACTIONS",
+                        payload: transactions.data,
+                    });
+                    console.log("Success: ", transactions.data);
+                })
+                .catch((err) => {
+                    console.log("Error fetching transactions: ", err);
+                });
+        };
+        fetchTransactions();
     }, []);
 
     return (

@@ -1,9 +1,10 @@
 // react-router-dom imports
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import HomePage from "./views/HomePage";
 import UserPage from "./views/UserPage";
 import { useAuthContext } from "./hooks/useAuthContext";
 import CreateBudgetModal from "./components/budget/CreateBudgetModal";
+import ClearTransactionsModal from "./components/transactions/ClearTransactionsModal";
 
 // App
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
 
             {/* Modals */}
             <CreateBudgetModal />
+            <ClearTransactionsModal />
         </div>
     );
 };
