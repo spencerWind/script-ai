@@ -17,9 +17,9 @@ const Transactions = () => {
                 </div>
                 <div>
                     {transactions &&
-                        transactions.map((transaction) => (
+                        transactions.map((transaction, index) => (
                             <TransactionItem
-                                key={transaction._id}
+                                key={`${transaction._id}-${index}`}
                                 transaction={transaction}
                             />
                         ))}
@@ -32,11 +32,13 @@ const Transactions = () => {
                 </div>
                 <div className="glass-card p-4">
                     <Header styles={"p-2 border-b mb-4"}>Actions</Header>
-                    <button onClick={() => {
-                        document
-                            .getElementById("clearTransactionsModal")
-                            .classList.remove("hidden");
-                    }} className="h-8 px-2 rounded bg-purple-900 text-slate-50 text-sm">
+                    <button
+                        onClick={() => {
+                            document
+                                .getElementById("clearTransactionsModal")
+                                .classList.remove("hidden");
+                        }}
+                        className="h-8 px-2 rounded bg-purple-900 text-slate-50 text-sm">
                         Clear Transactions
                     </button>
                 </div>

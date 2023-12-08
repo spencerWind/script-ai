@@ -1,15 +1,18 @@
-const BudgetController = require("../controllers/budget.controller")
+const BudgetController = require("../controllers/budget.controller");
 
 module.exports = (app) => {
     // Get Budget's
-    app.get("/api/budget/fetch", BudgetController.getBudgets)
+    app.get("/api/budget/fetch", BudgetController.getBudgets);
 
     // Create Budget
-    app.post("/api/budget/create", BudgetController.createBudget)
+    app.post("/api/budget/create", BudgetController.createBudget);
 
-    // Update Budget
-    app.patch("/api/budget/update", BudgetController.updateBudget)
+    // Update Budget Progress
+    app.patch("/api/budget/update", BudgetController.updateBudget);
+
+    // Reset Budgets
+    app.patch("/api/budget/reset", BudgetController.resetBudget);
 
     // Delete Budget
-    app.delete("/api/budget/delete", BudgetController.deleteBudget)
-}
+    app.delete("/api/budget/delete", BudgetController.deleteBudget);
+};

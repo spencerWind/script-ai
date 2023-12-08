@@ -7,7 +7,7 @@ const BudgetItem = ({ budget }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
-        <div className="border-t py-4">
+        <div className="border-b py-4">
             <div className=" flex flex-row items-center justify-between ">
                 <div className="flex flex-row items-center gap-2 text-lg">
                     <img

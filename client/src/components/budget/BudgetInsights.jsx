@@ -10,26 +10,7 @@ const BudgetInsights = () => {
 
     return (
         <div>
-            <Header styles="mb-4">Insights</Header>
-            <div className=" border-t">
-                <div className="my-4">
-                    <h2 className="font-medium">Daily Spending</h2>
-                    <div className="flex gap-32 mt-2">
-                        <div className="flex">
-                            <p className="font-light text-sm">Current:&nbsp;</p>
-                            <p>$&nbsp;</p>
-
-                        </div>
-                        <div className="flex">
-                            <p className="font-light">Target:&nbsp;</p>
-                            <p>$&nbsp;</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h2>Weekly Spending</h2>
-                </div>
-            </div>
+            <Header styles="mb-4">Actions</Header>
         </div>
     );
 };

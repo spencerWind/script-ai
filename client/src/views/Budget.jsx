@@ -21,19 +21,8 @@ const Budget = () => {
                 <BudgetOverview budgets={budgets} />
             </div>
             <div className="lg:flex flex-row gap-16">
-                <div className="p-4 glass-card lg:w-1/2 max-h-max">
-                    <div className="flex flex-row items-center justify-between mb-2">
-                        <Header>Categories</Header>
-                        <button
-                            className="text-purple-500 font-black text-3xl"
-                            onClick={() => {
-                                document
-                                    .getElementById("createBudgetModal")
-                                    .classList.remove("hidden");
-                            }}>
-                            +
-                        </button>
-                    </div>
+                <div className="p-4 glass-card lg:w-2/3 max-h-max">
+                    <Header styles={"p-2 border-b"}>Categories</Header>
                     {budgets &&
                         budgets.map((budget) => (
                             <BudgetItem
@@ -42,8 +31,28 @@ const Budget = () => {
                             />
                         ))}
                 </div>
-                <div className="p-4 glass-card lg:w-1/2 h-max">
-                    <BudgetInsights />
+                <div className="p-4 glass-card lg:w-1/3 h-max">
+                    <Header styles={"p-2 border-b mb-4"}>Actions</Header>
+                    <div className="flex flex-row items-center gap-8">
+                        <button
+                            onClick={() => {
+                                document
+                                    .getElementById("createBudgetModal")
+                                    .classList.remove("hidden");
+                            }}
+                            className="h-8 px-2 rounded bg-violet-600 text-slate-50 text-sm">
+                            Add Category
+                        </button>
+                        <button
+                            onClick={() => {
+                                document
+                                    .getElementById("clearTransactionsModal")
+                                    .classList.remove("hidden");
+                            }}
+                            className="h-8 px-2 rounded bg-violet-800 text-slate-50 text-sm">
+                            Clear Budget
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

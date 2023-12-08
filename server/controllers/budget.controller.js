@@ -54,7 +54,7 @@ module.exports.updateBudget = async (req, res) => {
         return res.status(404).json({ message: "User not found" });
     }
 
-    Budget.findOneAndUpdate({ _id: req.body._id }, req.body, {
+    Budget.findOneAndUpdate({ categoryName: req.body.categoryName }, {currentAmount: req.body.currentAmount}, {
         new: true,
     })
         .then((updatedBudget) => {
@@ -62,6 +62,35 @@ module.exports.updateBudget = async (req, res) => {
             res.status(200).json({
                 message: "Budget updated",
                 budget: updatedBudget,
+            });
+        })
+        .catch((err) => {
+            console.log("Error updating budget:", err);
+            res.json(err);
+        });
+};
+
+// Reset Budgets
+module.exports.resetBudget = async (req, res) => {
+    const { user } = req.body;
+
+    const exists = await findUserById(user);
+    if (!exists) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    Budget.updateMany(
+        { user },
+        { currentAmount: 0 },
+        {
+            new: true,
+        }
+    )
+        .then((updatedBudgets) => {
+            console.log("Budgets updated: ", updatedBudgets);
+            res.status(200).json({
+                message: "Budget updateds",
+                budgets: updatedBudgets,
             });
         })
         .catch((err) => {

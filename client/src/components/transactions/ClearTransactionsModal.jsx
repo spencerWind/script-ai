@@ -1,10 +1,28 @@
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useTransactionContext } from "../../hooks/useTransactionContext";
+import { useBudgetContext } from "../../hooks/useBudgetContext";
 import axios from "axios";
 
 const ClearTransactionsModal = () => {
-    const { dispatch } = useTransactionContext();
+    const { dispatch: transactionDispatch } = useTransactionContext();
+    const {dispatch: budgetDispatch} = useBudgetContext()
     const { user } = useAuthContext();
+
+    const resetBudget = async () => {
+                await axios
+                    .patch("http://localhost:8000/api/budget/reset", {
+                        user: user._id,
+                    })
+                    .then((res) => {
+                        console.log("Success: ", res.data);
+                        budgetDispatch({
+                            type: "RESET_BUDGETS",
+                        });
+                    })
+                    .catch((err) => {
+                        console.log("Error: ", err);
+                    });
+    };
 
     const clearTransactions = async () => {
         await axios
@@ -15,9 +33,10 @@ const ClearTransactionsModal = () => {
             })
             .then((res) => {
                 console.log("Success: ", res.data);
-                dispatch({
+                transactionDispatch({
                     type: "DELETE_TRANSACTIONS",
                 });
+                resetBudget()
                 document
                     .getElementById("clearTransactionsModal")
                     .classList.add("hidden");

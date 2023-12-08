@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useTransactionContext } from "../../hooks/useTransactionContext";
 import { useBudgetContext } from "../../hooks/useBudgetContext";
@@ -10,9 +10,42 @@ const CreateTransactionForm = () => {
     const [transactionAmount, setTransactionAmount] = useState("");
     const [categoryName, setCategoryName] = useState("");
     const { user } = useAuthContext();
-    const { dispatch } = useTransactionContext();
-    const {budgets} = useBudgetContext()
+    const { dispatch: transactionDispatch } = useTransactionContext();
+    const { dispatch: budgetDispatch, budgets } = useBudgetContext();
 
+    useEffect(() => {
+        // Your logic to set the initial value of categoryName
+        budgets && setCategoryName(budgets[0].categoryName);
+    }, [budgets]);
+
+    const updateBudget = async (categoryName, currentAmount) => {
+        const previousBudget = budgets.find((budget) => {
+            return budget.categoryName === categoryName;
+        });
+
+        await axios
+            .patch("http://localhost:8000/api/budget/update", {
+                categoryName: categoryName,
+                user: user._id,
+                currentAmount: previousBudget.currentAmount + currentAmount,
+            })
+            .then((res) => {
+                console.log("Success: ", res.data);
+                console.log("previousBudget:", previousBudget);
+                budgetDispatch({
+                    type: "UPDATE_BUDGET",
+                    payload: res.data.budget,
+                });
+                document
+                    .getElementById("updateBudgetProgressModal")
+                    .classList.add("hidden");
+            })
+            .catch((err) => {
+                console.log("Error: ", err);
+            });
+    };
+
+    //
     const createTransaction = async (e) => {
         e.preventDefault();
         await axios
@@ -23,11 +56,15 @@ const CreateTransactionForm = () => {
                 categoryName,
             })
             .then((transaction) => {
-                dispatch({
+                transactionDispatch({
                     type: "CREATE_TRANSACTION",
                     payload: transaction.data.transaction,
                 });
                 console.log("Success: ", transaction.data);
+                updateBudget(
+                    transaction.data.transaction.categoryName,
+                    transaction.data.transaction.transactionAmount
+                );
                 setTransactionName("");
                 setTransactionAmount("");
                 setCategoryName("");
@@ -66,16 +103,22 @@ const CreateTransactionForm = () => {
                             className="font-light">
                             Category:
                         </label>
-                        <select
-                            type="text"
-                            className="h-8 w-full rounded px-2 mt-1"
-                            id="categoryName"
-                            onChange={(e) => {setCategoryName(e.target.value)}}>
-                                {
-                                    budgets && budgets.map((budget) => (
-                                        <option key={budget.categoryName} value={budget.categoryName}>{budget.categoryName}</option>
-                                    ))
-                                }
+                            <select
+                                type="text"
+                                className="h-8 w-full rounded px-2 mt-1"
+                                id="categoryName"
+                                onChange={(e) => {
+                                    setCategoryName(e.target.value);
+                                }}>
+                                <option value="none">none</option>
+                                {budgets &&
+                                    budgets.map((budget) => (
+                                        <option
+                                            key={budget._id}
+                                            value={budget.categoryName}>
+                                            {budget.categoryName}
+                                        </option>
+                                    ))}
                             </select>
                     </div>
                     <div>

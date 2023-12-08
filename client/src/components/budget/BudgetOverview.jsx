@@ -33,7 +33,7 @@ const BudgetOverview = ({ budgets }) => {
     return (
         budgets && (
             <div className="mt-16">
-                <div className="h-12 relative rounded-lg flex justify-end items-center bg-purple-200 overflow-clip">
+                <div className="h-12 relative rounded-lg flex justify-end items-center bg-purple-200 overflow-clip mb-16">
                     <div
                         style={{
                             width: `${progressPercentage() * 100}%`,
@@ -44,8 +44,8 @@ const BudgetOverview = ({ budgets }) => {
                     </div>
                     {progressPercentage() < 0.95 && <p className="mr-4 text-sm font-medium">${totalBudget()}</p>}
                     {currentProgress() > totalBudget() && <p className="z-20 mr-4 font-bold text-slate-100">${currentProgress()} / ${totalBudget()}</p> }
-
                 </div>
+                <div className="border"></div>
             </div>
         )
     );

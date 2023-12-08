@@ -15,6 +15,13 @@ export const BudgetReducer = (state, action) => {
                     budget._id === action.payload._id ? action.payload : budget
                 ),
             };
+        case "RESET_BUDGETS":
+            return {
+                budgets: state.budgets.map((budget) => ({
+                    ...budget,
+                    currentAmount: 0,
+                })),
+            };
         case "DELETE_BUDGET":
             return {
                 budgets: state.budgets.filter(
