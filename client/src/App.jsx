@@ -5,6 +5,7 @@ import UserPage from "./views/UserPage";
 import { useAuthContext } from "./hooks/useAuthContext";
 import CreateBudgetModal from "./components/budget/CreateBudgetModal";
 import ClearTransactionsModal from "./components/transactions/ClearTransactionsModal";
+import EditBudgetsModal from "./components/budget/EditBudgetsModal";
 
 // App
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
             {/* Modals */}
             <CreateBudgetModal />
             <ClearTransactionsModal />
+            <EditBudgetsModal />
         </div>
     );
 };

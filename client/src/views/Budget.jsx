@@ -22,7 +22,7 @@ const Budget = () => {
             </div>
             <div className="lg:flex flex-row gap-16">
                 <div className="p-4 glass-card lg:w-2/3 max-h-max">
-                    <Header styles={"p-2 border-b"}>Categories</Header>
+                    <Header styles={"pb-4 border-b border-violet-500"}>Categories</Header>
                     {budgets &&
                         budgets.map((budget) => (
                             <BudgetItem
@@ -31,27 +31,21 @@ const Budget = () => {
                             />
                         ))}
                 </div>
-                <div className="p-4 glass-card lg:w-1/3 h-max">
-                    <Header styles={"p-2 border-b mb-4"}>Actions</Header>
-                    <div className="flex flex-row items-center gap-8">
+                <div className="p-4 glass-card lg:w-[512px] h-max">
+                    <Header styles={"pb-4 border-b border-violet-500 mb-8"}>Actions</Header>
+                    <div className="flex flex-row items-center justify-center flex-wrap gap-12 mb-8">
                         <button
                             onClick={() => {
                                 document
                                     .getElementById("createBudgetModal")
                                     .classList.remove("hidden");
                             }}
-                            className="h-8 px-2 rounded bg-violet-600 text-slate-50 text-sm">
+                            className="h-10 w-2/5 rounded bg-slate-900 dark:bg-slate-50 font-medium text-slate-50 dark:text-slate-950">
                             Add Category
                         </button>
-                        <button
-                            onClick={() => {
-                                document
-                                    .getElementById("clearTransactionsModal")
-                                    .classList.remove("hidden");
-                            }}
-                            className="h-8 px-2 rounded bg-violet-800 text-slate-50 text-sm">
-                            Clear Budget
-                        </button>
+                        <button onClick={() => {
+                            document.getElementById("updateBudgetsModal").classList.remove("hidden");
+                        }} className="h-10 w-2/5 rounded bg-slate-900 dark:bg-slate-100 font-medium text-slate-50 dark:text-slate-950">Edit Categories</button>
                     </div>
                 </div>
             </div>

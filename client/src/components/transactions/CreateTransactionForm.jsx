@@ -14,31 +14,31 @@ const CreateTransactionForm = () => {
     const { dispatch: budgetDispatch, budgets } = useBudgetContext();
 
     useEffect(() => {
-        // Your logic to set the initial value of categoryName
-        budgets && setCategoryName(budgets[0].categoryName);
-    }, [budgets]);
+        setCategoryName("none")
+    }, [])
 
     const updateBudget = async (categoryName, currentAmount) => {
+        console.log(categoryName, currentAmount)
+        console.log(user)
         const previousBudget = budgets.find((budget) => {
             return budget.categoryName === categoryName;
         });
 
+        const updatedTotal = previousBudget.currentAmount + currentAmount
+
         await axios
-            .patch("http://localhost:8000/api/budget/update", {
-                categoryName: categoryName,
+            .patch("http://localhost:8000/api/budget/update/progress", {
                 user: user._id,
-                currentAmount: previousBudget.currentAmount + currentAmount,
+                categoryName,
+                currentAmount: updatedTotal,
             })
             .then((res) => {
-                console.log("Success: ", res.data);
+                console.log("Budget updated: ", res.data);
                 console.log("previousBudget:", previousBudget);
                 budgetDispatch({
                     type: "UPDATE_BUDGET",
                     payload: res.data.budget,
                 });
-                document
-                    .getElementById("updateBudgetProgressModal")
-                    .classList.add("hidden");
             })
             .catch((err) => {
                 console.log("Error: ", err);

@@ -8,7 +8,16 @@ module.exports = (app) => {
     app.post("/api/budget/create", BudgetController.createBudget);
 
     // Update Budget Progress
-    app.patch("/api/budget/update", BudgetController.updateBudget);
+    app.patch(
+        "/api/budget/update/progress",
+        BudgetController.updateBudgetProgress
+    );
+
+    // Update Budget Info
+    app.patch(
+        "/api/budget/update/info",
+        BudgetController.updateBudgetInfo
+    );
 
     // Reset Budgets
     app.patch("/api/budget/reset", BudgetController.resetBudget);

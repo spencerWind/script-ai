@@ -45,8 +45,8 @@ module.exports.getBudgets = async (req, res) => {
         });
 };
 
-// Update budget
-module.exports.updateBudget = async (req, res) => {
+// Update budget info
+module.exports.updateBudgetInfo = async (req, res) => {
     const { user } = req.body;
 
     const exists = await findUserById(user);
@@ -54,7 +54,37 @@ module.exports.updateBudget = async (req, res) => {
         return res.status(404).json({ message: "User not found" });
     }
 
-    Budget.findOneAndUpdate({ categoryName: req.body.categoryName }, {currentAmount: req.body.currentAmount}, {
+    Budget.findOneAndUpdate(
+        { _id: req.body._id },
+        { totalAmount: req.body.totalAmount,
+        categoryName: req.body.categoryName },
+        {
+            new: true,
+        }
+    )
+        .then((updatedBudget) => {
+            console.log("Budget updated: ", updatedBudget);
+            res.status(200).json({
+                message: "Budget updated",
+                budget: updatedBudget,
+            });
+        })
+        .catch((err) => {
+            console.log("Error updating budget:", err);
+            res.json(err);
+        });
+};
+
+// Update budget progress
+module.exports.updateBudgetProgress = async (req, res) => {
+    const { user } = req.body;
+
+    const exists = await findUserById(user);
+    if (!exists) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    Budget.findOneAndUpdate({ categoryName: req.body.categoryName, user: req.body.user }, {currentAmount: req.body.currentAmount}, {
         new: true,
     })
         .then((updatedBudget) => {

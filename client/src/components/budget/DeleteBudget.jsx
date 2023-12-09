@@ -1,4 +1,5 @@
-import axios from "axios";
+
+/* eslint-disable react/prop-types */import axios from "axios";
 import { useBudgetContext } from "../../hooks/useBudgetContext";
 
 const DeleteBudget = ({ budget }) => {
