@@ -6,21 +6,18 @@ import { useState } from "react";
 const UpdateGoalProgress = ({ savingsGoal }) => {
     const { dispatch } = useSavingsGoalContext();
     const { _id, user } = savingsGoal;
-    const [formisOpen, setFormisOpen] = useState(false);
     const [currentAmount, setCurrentAmount] = useState("");
-
-    const toggleForm = () => {
-        setFormisOpen(!formisOpen);
-    };
+    
 
     const updateGoalProgress = async (e) => {
         e.preventDefault();
-
+        const newTotal = parseInt(currentAmount) + parseInt(savingsGoal.currentAmount);
+        console.log(newTotal)
         await axios
             .patch("http://localhost:8000/api/goal/update", {
                 _id,
                 user,
-                currentAmount,
+                currentAmount: newTotal
             })
             .then((res) => {
                 console.log("Success: ", res.data);
@@ -28,7 +25,7 @@ const UpdateGoalProgress = ({ savingsGoal }) => {
                     type: "UPDATE_SAVINGS_GOAL",
                     payload: res.data.savingsGoal,
                 });
-                setFormisOpen(!formisOpen);
+                setCurrentAmount(0)
             })
             .catch((err) => {
                 console.log("Error: ", err);
@@ -36,21 +33,16 @@ const UpdateGoalProgress = ({ savingsGoal }) => {
     };
 
     return (
-        <>
-            {!formisOpen && (
-                <button
-                    onClick={toggleForm}
-                    className="underline">
-                    Update progress
-                </button>
-            )}
-            {formisOpen && (
-                <form onSubmit={updateGoalProgress}>
-                    <div className="flex flex-row gap-2 items-center">
+        <div className="flex items-center justify-between py-4 border-b">
+            <h1>{savingsGoal.goalName}</h1>
+            <form onSubmit={updateGoalProgress}>
+                <div className="flex flex-row items-center gap-4">
+                    <div>
+                        <span className="text-lg mr-2">$</span>
                         <input
-                            placeholder="amount"
+                            placeholder="0"
                             required
-                            className="h-8 w-32 rounded text-slate-900 px-2"
+                            className="h-8 w-24 rounded text-slate-900 px-2"
                             type="number"
                             id="currentAmount"
                             value={currentAmount}
@@ -58,15 +50,15 @@ const UpdateGoalProgress = ({ savingsGoal }) => {
                                 setCurrentAmount(e.target.value);
                             }}
                         />
-                        <input
-                            className="cursor-pointer rounded font-bold"
-                            type="submit"
-                            value="Update"
-                        />
                     </div>
-                </form>
-            )}
-        </>
+                    <input
+                        className="cursor-pointer text-slate-100 px-2 h-8 rounded font-medium bg-violet-800"
+                        type="submit"
+                        value="Add Progress"
+                    />
+                </div>
+            </form>
+        </div>
     );
 };
 

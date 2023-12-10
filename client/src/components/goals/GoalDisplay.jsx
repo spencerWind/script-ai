@@ -7,61 +7,32 @@ import DeleteGoal from "./DeleteGoal";
 import UpdateGoalProgress from "./UpdateGoalProgress";
 
 const GoalDisplay = ({ savingsGoal }) => {
-    const [progressWidth, setProgressWidth] = useState(0);
+    
+    const progressPercentage = () => {
+        const percentage = (savingsGoal.currentAmount / savingsGoal.targetAmount)
 
-    function calculateProgressWidth(targetAmount, currentAmount) {
-        const progress = (currentAmount / targetAmount) * 100;
-        return progress;
+        return percentage
     }
 
-    useEffect(() => {
-        setProgressWidth(
-            calculateProgressWidth(
-                savingsGoal.targetAmount,
-                savingsGoal.currentAmount
-            )
-        );
-    }, [savingsGoal]);
-
     return (
-        <div
-            className={`p-4 rounded glass-card ${
-                savingsGoal.completed && "opacity-50"
-            } lg:flex gap-4  justify-between relative`}>
-            <div className="lg:w-1/2 max-lg:mb-8">
-                {" "}
-                <h1 className="font-medium text-3xl mb-4   leading-none">
-                    {savingsGoal.goalName}
-                </h1>
-                <p className="mb-4 text-sm">
-                    Target:{" "}
-                    <span className="font-semibold">
-                        {savingsGoal.deadline.split("T", 1)}
-                    </span>
-                </p>
-                <div>
-                    <p className="flex items-center gap-2 mb-2">
-                        <span className="text-3xl font-bold text-purple-500">
-                            ${savingsGoal.currentAmount}
-                        </span>
-                        <span className="text-sm text-purple-800 dark:text-purple-300">
-                            / ${savingsGoal.targetAmount}
-                        </span>
-                    </p>
-                    <div className="border border-green-500 h-8 rounded-2xl bg-slate-100 overflow-hidden mb-4">
+        <div className="py-8 border">
+            <div className=" flex flex-row items-center justify-between ">
+                <h1 className="text-xl font-light">{savingsGoal.goalName}</h1>
+                <div className="flex lg:w-1/2 items-center">
+                    <div className="flex items-center gap-2 p-1 h-10 relative w-full rounded-lg justify-end bg-purple-200 overflow-clip">
                         <div
                             style={{
-                                width: `${progressWidth}%`,
+                                width: `${progressPercentage() * 100}%`,
+                                transition: "width 0.5s ease",
                             }}
-                            className="bg-green-500 h-16 top-0 left-0"></div>
+                            className="absolute border-purple-500 left-0 h-12 rounded-lg bg-purple-500 text-slate-100 flex items-center pr-1 pl-1 font-bold min-w-max justify-end">
+                            <span>${savingsGoal.currentAmount}</span>
+                        </div>
+                        <span className=" w-20 flex items-center justify-end ml-2 font-light">
+                            ${savingsGoal.targetAmount}
+                        </span>
                     </div>
-                    <UpdateGoalProgress savingsGoal={savingsGoal} />
                 </div>
-            </div>
-            <div className="flex gap-8 items-start">
-                <PinGoal savingsGoal={savingsGoal} />
-                <CompleteGoal savingsGoal={savingsGoal} />
-                <DeleteGoal savingsGoal={savingsGoal} />
             </div>
         </div>
     );

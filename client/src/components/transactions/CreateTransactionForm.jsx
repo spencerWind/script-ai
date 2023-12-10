@@ -140,7 +140,7 @@ const CreateTransactionForm = () => {
                     </div>
                     <input
                         type="submit"
-                        className="h-8 w-full rounded bg-purple-500 font-medium text-slate-100"
+                        className="h-10 w-full rounded bg-purple-500 font-medium text-slate-100"
                     />
                 </div>
             </form>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useBudgetContext } from "../../hooks/useBudgetContext";
 import axios from "axios";
+import Header from "../script-ui/Header";
 
 const CreateBudgetModal = () => {
     const [categoryName, setCategoryName] = useState("");
@@ -41,11 +42,11 @@ const CreateBudgetModal = () => {
             className="fixed top-0 left-0 h-screen w-screen glass-card flex justify-center items-center hidden">
             <form
                 onSubmit={createBudget}
-                className=" w-[400px] p-4 glass-card rounded">
+                className=" w-[448px] p-4 glass-card rounded">
                 <div>
                     <div className="flex flex-col gap-8">
-                        <div className="flex flex-row items-center justify-between font-bold">
-                            <h1>Create Budget Item</h1>
+                        <div className="flex flex-row items-center justify-between font-bold pb-2 border-b border-violet-500">
+                            <Header styles={""}>Create Budget</Header>
                             <button
                                 className="text-red-500 font-black text-2xl"
                                 onClick={() => {
@@ -56,42 +57,47 @@ const CreateBudgetModal = () => {
                                 x
                             </button>
                         </div>
-                        <div className="flex flex-row gap-2 items-center">
+                        <div className="">
                             <label
-                                className="w-24 text-slate-900 dark:text-slate-100"
+                                className="font-light"
                                 htmlFor="budgetCategoryName">
                                 Category:
                             </label>
-                            <input
-                                required
-                                className="h-8 w-2/3 rounded text-slate-900 px-2"
-                                type="text"
-                                id="budgetCategoryName"
-                                value={categoryName}
-                                onChange={(e) => {
-                                    setCategoryName(e.target.value);
-                                }}
-                            />
+                            <div className="flex items-center">
+                                <span className="text-xl mr-2">$</span>
+                                <input
+                                    required
+                                    className="h-8 w-full mt-1 rounded text-slate-900 px-2"
+                                    type="text"
+                                    id="budgetCategoryName"
+                                    value={categoryName}
+                                    onChange={(e) => {
+                                        setCategoryName(e.target.value);
+                                    }}
+                                />
+                            </div>
                         </div>
-                        <div className="flex flex-row gap-2 items-center">
+                        <div>
                             <label
-                                className="w-24 text-slate-900 dark:text-slate-100"
+                                className="font-light"
                                 htmlFor="budgetTargetAmount">
-                                Monthly Budget:
+                                Budget:
                             </label>
-                            <input
-                                required
-                                className="h-8 w-2/3 rounded text-slate-900 px-2"
-                                type="number"
-                                id="budgetTargetAmount"
-                                value={totalAmount}
-                                onChange={(e) => {
-                                    setTotalAmount(e.target.value);
-                                }}
-                            />
+                            <div className="w-full">
+                                <input
+                                    required
+                                    className="h-8 w-full mt-1 rounded text-slate-900 px-2"
+                                    type="number"
+                                    id="budgetTargetAmount"
+                                    value={totalAmount}
+                                    onChange={(e) => {
+                                        setTotalAmount(e.target.value);
+                                    }}
+                                />
+                            </div>
                         </div>
                         <input
-                            className="h-8 bg-green-500 text-slate-900 rounded font-bold"
+                            className="h-8 bg-purple-500 text-slate-100 rounded font-medium"
                             type="submit"
                             value="Create"
                         />

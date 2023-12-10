@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useBudgetContext } from "../../hooks/useBudgetContext";
-import axios from "axios";
 import Header from "../script-ui/Header";
 import EditBudgetForm from "./EditBudgetForm";
 
@@ -26,7 +23,7 @@ const EditBudgetsModal = () => {
                     </button>
                 </div>
                 <div className="">
-                    {budgets &&
+                    {budgets && budgets.length > 0 &&
                         budgets.map((budget) => (
                             <EditBudgetForm
                                 key={budget._id}

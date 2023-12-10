@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import axios from "axios";
 import { useSavingsGoalContext } from "../../hooks/useSavingsGoalContext";
+import Header from "../script-ui/Header";
 
 const GoalForm = () => {
     const { user } = useAuthContext();
@@ -28,6 +29,7 @@ const GoalForm = () => {
                     payload: res.data.savingsGoal,
                 });
                 console.log("Success: ", res.data);
+                document.getElementById("createGoalModal").classList.add("hidden")
                 setGoalName("");
                 setTargetAmount("");
                 setCurrentAmount("");
@@ -39,33 +41,36 @@ const GoalForm = () => {
     };
 
     return (
-        <div className="rounded p-4 w-full ">
-            <form onSubmit={createGoal}>
-                <div className="flex flex-col gap-8 md:items-center">
-                    <div className="flex gap-4 md:w-4/5">
-                        <label
-                            className="text-slate-900 dark:text-slate-100"
-                            htmlFor="goalName">
-                            Goal Name:
-                        </label>
+        <div className="">
+            <form
+                onSubmit={createGoal}
+                className="p-4 flex flex-col gap-8">
+                <div className="">
+                    <label
+                        className="font-light"
+                        htmlFor="goalName">
+                        Name:
+                    </label>
+                    <input
+                        required
+                        className="h-8 rounded px-2 w-full mt-1"
+                        type="text"
+                        id="goalName"
+                        value={goalName}
+                        onChange={(e) => setGoalName(e.target.value)}
+                    />
+                </div>
+                <div className="">
+                    <label
+                        className="font-light"
+                        htmlFor="targetAmount">
+                        Target Amount:
+                    </label>
+                    <div className="flex items-center">
+                        <span className="text-xl mr-2">$</span>
                         <input
                             required
-                            className="h-8 rounded text-slate-900 px-2 w-full"
-                            type="text"
-                            id="goalName"
-                            value={goalName}
-                            onChange={(e) => setGoalName(e.target.value)}
-                        />
-                    </div>
-                    <div className="flex flex-row gap-2 items-center md:w-4/5">
-                        <label
-                            className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="targetAmount">
-                            Target Amount:
-                        </label>
-                        <input
-                            required
-                            className="h-8 w-full rounded text-slate-900 px-2"
+                            className="h-8 w-full rounded px-2 mt-1"
                             type="number"
                             id="targetAmount"
                             value={targetAmount}
@@ -74,15 +79,18 @@ const GoalForm = () => {
                             }}
                         />
                     </div>
-                    <div className="flex flex-row gap-2 items-center md:w-4/5">
-                        <label
-                            className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="currentAmount">
-                            Current Amount:
-                        </label>
+                </div>
+                <div>
+                    <label
+                        className="font-light"
+                        htmlFor="currentAmount">
+                        Current Amount:
+                    </label>
+                    <div className="flex items-center">
+                        <span className="text-xl mr-2">$</span>
                         <input
                             required
-                            className="h-8 w-full rounded text-slate-900 px-2"
+                            className="h-8 w-full rounded px-2 mt-1"
                             type="number"
                             id="currentAmount"
                             value={currentAmount}
@@ -91,29 +99,29 @@ const GoalForm = () => {
                             }}
                         />
                     </div>
-                    <div className="flex flex-row gap-2 items-center md:w-4/5">
-                        <label
-                            className="w-24 text-slate-900 dark:text-slate-100"
-                            htmlFor="deadline">
-                            Deadline:
-                        </label>
-                        <input
-                            required
-                            className="h-8 w-full rounded text-slate-900 px-2"
-                            type="date"
-                            id="deadline"
-                            value={deadline}
-                            onChange={(e) => {
-                                setDeadline(e.target.value);
-                            }}
-                        />
-                    </div>
+                </div>
+                <div>
+                    <label
+                        className="font-light"
+                        htmlFor="deadline">
+                        Deadline:
+                    </label>
                     <input
-                        className="h-8 bg-purple-500 max:md w-full md:w-4/5 text-slate-100 rounded font-bold self-center"
-                        type="submit"
-                        value="Create Goal"
+                        required
+                        className="h-8 w-full rounded px-2 mt-1"
+                        type="date"
+                        id="deadline"
+                        value={deadline}
+                        onChange={(e) => {
+                            setDeadline(e.target.value);
+                        }}
                     />
                 </div>
+                <input
+                    className="h-10 bg-purple-500 w-full text-slate-100 rounded font-medium"
+                    type="submit"
+                    value="Create"
+                />
             </form>
         </div>
     );

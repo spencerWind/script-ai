@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useBudgetContext } from "../../hooks/useBudgetContext";
 import axios from "axios";
+import trashIcon from "../../assets/trashIcon.svg";
 
 const EditBudgetForm = ({ budget }) => {
     // setting values for form items
@@ -13,7 +14,7 @@ const EditBudgetForm = ({ budget }) => {
     const { _id, user } = budget;
     const { dispatch } = useBudgetContext();
 
-    // form submission
+    // update budget
     const updateBudget = async (e) => {
         e.preventDefault();
 
@@ -26,12 +27,12 @@ const EditBudgetForm = ({ budget }) => {
             })
             .then((res) => {
                 console.log("Success: ", res.data);
-                dispatch({
-                    type: "UPDATE_BUDGET",
-                    payload: res.data.budget,
-                });
+                                dispatch({
+                                    type: "UPDATE_BUDGET",
+                                    payload: res.data.deletedBudget,
+                                });
                 document
-                    .getElementById("updateBudgetModal")
+                    .getElementById("updateBudgetsModal")
                     .classList.add("hidden");
             })
             .catch((err) => {
@@ -39,8 +40,34 @@ const EditBudgetForm = ({ budget }) => {
             });
     };
 
+    // delete budget
+    const deleteBudget = async () => {
+        await axios
+            .delete("http://localhost:8000/api/budget/delete", {
+                params: {
+                    _id,
+                    user,
+                },
+            })
+            .then((res) => {
+                console.log("Success: ", res.data);
+                document
+                    .getElementById("updateBudgetsModal")
+                    .classList.add("hidden");
+                dispatch({
+                    type: "DELETE_BUDGET",
+                    payload: res.data.deletedBudget,
+                });
+            })
+            .catch((err) => {
+                console.log("Error: ", err);
+            });
+    };
+
     return (
-        <form onSubmit={updateBudget} className="p-4 flex w-full items-center justify-between gap-8">
+        <form
+            onSubmit={updateBudget}
+            className="p-4 flex w-full items-center justify-between gap-8">
             <div className="w-2/5 h-16 flex items-center gap-8">
                 <label
                     className="text-slate-900 dark:text-slate-100"
@@ -73,7 +100,20 @@ const EditBudgetForm = ({ budget }) => {
                     }}
                 />
             </div>
-            <button type="submit" className="w-1/5 h-8 font-medium bg-purple-500 text-slate-50 rounded">Update</button>
+            <button
+                type="submit"
+                className="w-48 h-8 font-medium bg-purple-500 text-slate-50 rounded">
+                Update
+            </button>
+            <button
+                onClick={() => {
+                    deleteBudget();
+                }}>
+                <img
+                    src={trashIcon}
+                    alt="delete"
+                />
+            </button>
         </form>
     );
 };

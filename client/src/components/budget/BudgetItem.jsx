@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import dollarIcon from "../../assets/dollarIcon.svg";
-import BudgetItemDisplay from "./BudgetItemDisplay";
 
 const BudgetItem = ({ budget }) => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const progressPercentage = () => {
         const percentage = (budget.currentAmount / budget.totalAmount)
@@ -38,11 +35,6 @@ const BudgetItem = ({ budget }) => {
                     </span>
                 </div>
             </div>
-            {modalIsOpen && (
-                <div className="mt-4">
-                    <BudgetItemDisplay budget={budget} />
-                </div>
-            )}
         </div>
     );
 };
