@@ -39,7 +39,7 @@ const CreateBudgetModal = () => {
     return (
         <div
             id="createBudgetModal"
-            className="fixed top-0 left-0 h-screen w-screen glass-card flex justify-center items-center hidden">
+            className="fixed top-0 left-0 h-screen w-screen glass-card flex justify-center items-center hidden dark:text-slate-100">
             <form
                 onSubmit={createBudget}
                 className=" w-[448px] p-4 glass-card rounded">
@@ -64,7 +64,6 @@ const CreateBudgetModal = () => {
                                 Category:
                             </label>
                             <div className="flex items-center">
-                                <span className="text-xl mr-2">$</span>
                                 <input
                                     required
                                     className="h-8 w-full mt-1 rounded text-slate-900 px-2"
@@ -83,7 +82,8 @@ const CreateBudgetModal = () => {
                                 htmlFor="budgetTargetAmount">
                                 Budget:
                             </label>
-                            <div className="w-full">
+                            <div className="w-full flex items-center">
+                                <span className="text-xl mr-2">$</span>
                                 <input
                                     required
                                     className="h-8 w-full mt-1 rounded text-slate-900 px-2"

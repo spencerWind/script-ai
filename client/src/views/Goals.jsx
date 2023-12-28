@@ -9,8 +9,8 @@ const Goals = () => {
     const { savingsGoals } = useSavingsGoalContext();
 
     return (
-        <div className="lg: flex gap-16">
-            <div className="lg:w-2/3 h-max glass-card p-4 mb-16 pb-32">
+        <div className="lg:flex gap-16">
+            <div className="lg:w-2/3 h-max glass-card p-4 mb-16 lg:pb-32">
                 <div className="col-span-2 flex flex-col gap-4">
                     <Header styles={"pb-4 border-b border-purple-500"}>
                         All Goals
@@ -46,7 +46,7 @@ const Goals = () => {
             </div>
             <div>
                 {savingsGoals && savingsGoals.length > 0 && (
-                    <div className="w-[512px] p-4 glass-card mb-16 pb-8">
+                    <div className="lg:w-[512px] p-4 glass-card mb-16 pb-8">
                         <Header styles={"pb-4 border-b border-violet-500"}>
                             Update Goals
                         </Header>
@@ -59,7 +59,7 @@ const Goals = () => {
                             ))}
                     </div>
                 )}
-                <div className="w-[512px] h-max glass-card p-4 mb-16">
+                <div className="lg:w-[512px] h-max glass-card p-4">
                     <Header styles={"pb-4 mb-8 border-b border-purple-500"}>
                         Actions
                     </Header>
@@ -67,7 +67,7 @@ const Goals = () => {
                         className={
                             savingsGoals && savingsGoals.length > 0
                                 ? "flex flex-row items-center justify-center flex-wrap gap-12 mb-8"
-                                : "flex flex-row items-center flex-wrap gap-12 mb-8"
+                                : "flex flex-row items-center flex-wrap md:gap-12 mb-8"
                         }>
                         <button
                             onClick={() => {
@@ -75,7 +75,7 @@ const Goals = () => {
                                     .getElementById("createGoalModal")
                                     .classList.remove("hidden");
                             }}
-                            className="h-10 mb-8 w-48 rounded bg-slate-900 dark:bg-slate-100 font-medium text-slate-50 dark:text-slate-950">
+                            className="h-10 mb-8 w-2/5 rounded bg-slate-900 dark:bg-slate-100 font-medium text-slate-50 dark:text-slate-950">
                             Add Goal
                         </button>
                         {savingsGoals && savingsGoals.length > 0 && (
@@ -85,7 +85,7 @@ const Goals = () => {
                                         .getElementById("editGoalsModal")
                                         .classList.remove("hidden");
                                 }}
-                                className="h-10 mb-8 w-48 rounded bg-slate-900 dark:bg-slate-100 font-medium text-slate-50 dark:text-slate-950">
+                                className="h-10 mb-8 w-2/5 rounded bg-slate-900 dark:bg-slate-100 font-medium text-slate-50 dark:text-slate-950">
                                 Edit Goals
                             </button>
                         )}

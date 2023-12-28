@@ -26,7 +26,7 @@ const Navigation = () => {
 
     return (
         <NavBar>
-            <NavTitle style={"font-extrabold text-sm pr-16 text-green-600"}>
+            <NavTitle style={"font-extrabold text-purple-500"}>
                 Script Finance
             </NavTitle>
             <NavItems

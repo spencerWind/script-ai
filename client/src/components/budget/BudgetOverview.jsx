@@ -98,7 +98,7 @@ const BudgetOverview = ({ budgets }) => {
     return (
         budgets && (
             <div className="mt-16">
-                <div className="flex items-center px-16 mb-16">
+                <div className="flex md:items-center md:px-16 mb-16">
                     <div className="h-12 w-full relative rounded-lg flex justify-end items-center bg-purple-200 dark:bg-purple-800 overflow-clip">
                         <div
                             style={{
@@ -109,11 +109,11 @@ const BudgetOverview = ({ budgets }) => {
                             <span>${totalSpending()}</span>
                         </div>
                     </div>
-                    <span className=" text-slate-900 dark:text-slate-50 w-20 flex items-center justify-end ml-2 text-xl font-medium">${totalBudget()}</span>
+                    <span className=" text-slate-900 dark:text-slate-50 md:w-20 flex items-center justify-end ml-2 text-xl font-medium">${totalBudget()}</span>
                 </div>
-                <div className="flex mb-8 px-20">
-                    <div className="w-full flex gap-32">
-                        <div className="lg:w-1/2 h-full">
+                <div className="flex mb-8 md:px-20">
+                    <div className="w-full max-md:text-sm flex gap-8 lg:gap-32">
+                        <div className="md:w-1/2 h-full">
                             <h3 className="font-medium pb-4">Spending</h3>
                             <div className=" flex items-center justify-between py-2">
                                 <span className="font-light">
@@ -148,7 +148,7 @@ const BudgetOverview = ({ budgets }) => {
                                 </span>
                             </div>
                         </div>
-                        <div className="lg:w-1/2 h-full">
+                        <div className="md:w-1/2 h-full">
                             <h3 className="font-medium pb-4">Stats</h3>
                             <div className=" flex items-center justify-between py-2">
                                 <span className="font-light">

@@ -29,7 +29,7 @@ const EditBudgetForm = ({ budget }) => {
                 console.log("Success: ", res.data);
                                 dispatch({
                                     type: "UPDATE_BUDGET",
-                                    payload: res.data.deletedBudget,
+                                    payload: res.data.budget,
                                 });
                 document
                     .getElementById("updateBudgetsModal")
@@ -65,46 +65,48 @@ const EditBudgetForm = ({ budget }) => {
     };
 
     return (
-        <form
-            onSubmit={updateBudget}
-            className="p-4 flex w-full items-center justify-between gap-8">
-            <div className="w-2/5 h-16 flex items-center gap-8">
-                <label
-                    className="text-slate-900 dark:text-slate-100"
-                    htmlFor={"editBudgetCategory" + budget._id}>
-                    Category:
-                </label>
-                <input
-                    type="text"
-                    id={"editBudgetCategory" + budget._id}
-                    className="h-8 w-2/3 rounded text-slate-900 px-2"
-                    value={categoryName}
-                    onChange={(e) => {
-                        setCategoryName(e.target.value);
-                    }}
-                />
-            </div>
-            <div className="w-2/5 h-16 flex items-center gap-8">
-                <label
-                    className="text-slate-900 dark:text-slate-100"
-                    htmlFor={"editBudgetAmount" + budget._id}>
-                    Budget:
-                </label>
-                <input
-                    type="text"
-                    id={"editBudgetAmount" + budget._id}
-                    className="h-8 w-2/3 rounded text-slate-900 px-2"
-                    value={totalAmount}
-                    onChange={(e) => {
-                        setTotalAmount(e.target.value);
-                    }}
-                />
-            </div>
-            <button
-                type="submit"
-                className="w-48 h-8 font-medium bg-purple-500 text-slate-50 rounded">
-                Update
-            </button>
+        <div className="flex gap-8">
+            <form
+                onSubmit={updateBudget}
+                className="p-4 flex w-full items-center justify-between gap-8">
+                <div className="w-2/5 h-16 flex items-center gap-8">
+                    <label
+                        className="text-slate-900 dark:text-slate-100"
+                        htmlFor={"editBudgetCategory" + budget._id}>
+                        Category:
+                    </label>
+                    <input
+                        type="text"
+                        id={"editBudgetCategory" + budget._id}
+                        className="h-8 w-2/3 rounded text-slate-900 px-2"
+                        value={categoryName}
+                        onChange={(e) => {
+                            setCategoryName(e.target.value);
+                        }}
+                    />
+                </div>
+                <div className="w-2/5 h-16 flex items-center gap-8">
+                    <label
+                        className="text-slate-900 dark:text-slate-100"
+                        htmlFor={"editBudgetAmount" + budget._id}>
+                        Budget:
+                    </label>
+                    <input
+                        type="text"
+                        id={"editBudgetAmount" + budget._id}
+                        className="h-8 w-2/3 rounded text-slate-900 px-2"
+                        value={totalAmount}
+                        onChange={(e) => {
+                            setTotalAmount(e.target.value);
+                        }}
+                    />
+                </div>
+                <button
+                    type="submit"
+                    className="w-48 h-8 font-medium bg-purple-500 text-slate-50 rounded">
+                    Update
+                </button>
+            </form>
             <button
                 onClick={() => {
                     deleteBudget();
@@ -114,7 +116,7 @@ const EditBudgetForm = ({ budget }) => {
                     alt="delete"
                 />
             </button>
-        </form>
+        </div>
     );
 };
 

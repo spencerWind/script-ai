@@ -22,7 +22,7 @@ export const useLogIn = () => {
                     password: password,
                     darkMode: false,
                 },
-                { withCredentials: true }
+                { withCredentials: false }
             )
             .then((res) => {
                 console.log(res);
@@ -32,7 +32,7 @@ export const useLogIn = () => {
             })
             .catch((err) => {
                 setIsLoading(false);
-                setError(err);
+                setError(err.response.data.error);
                 console.log(err);
             });
     };

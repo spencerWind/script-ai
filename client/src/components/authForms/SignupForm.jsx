@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignUp } from "../../hooks/useSignUp";
+import Header from "../script-ui/Header";
 
 const SignupForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -16,10 +17,8 @@ const SignupForm = () => {
     };
 
     return (
-        <div className="rounded p-4 glass-card w-full max-w-[400px] mb-16">
-            <h1 className="mb-6 text-green-600 font-semibold text-lg">
-                Sign Up
-            </h1>
+        <div className="rounded p-4 glass-card md:w-[512px] mb-16 pb-8">
+            <Header styles={"pb-2 border-b border-purple-500 mb-4"}>Sign Up</Header>
             <form onSubmit={createUser}>
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-row gap-2 items-center">
@@ -109,7 +108,7 @@ const SignupForm = () => {
                     </div>
                     <input
                         disabled={isLoading}
-                        className="h-8 bg-green-500 rounded font-bold"
+                        className="h-8 bg-purple-500 rounded font-bold text-slate-100"
                         type="submit"
                         value="Create Account"
                     />

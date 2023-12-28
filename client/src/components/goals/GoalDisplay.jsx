@@ -1,11 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from "react";
-import CompleteGoal from "./CompleteGoal";
-import PinGoal from "./PinGoal";
-import DeleteGoal from "./DeleteGoal";
-import UpdateGoalProgress from "./UpdateGoalProgress";
-
 const GoalDisplay = ({ savingsGoal }) => {
     
     const progressPercentage = () => {
@@ -15,9 +9,9 @@ const GoalDisplay = ({ savingsGoal }) => {
     }
 
     return (
-        <div className="py-8 border">
-            <div className=" flex flex-row items-center justify-between ">
-                <h1 className="text-xl font-light">{savingsGoal.goalName}</h1>
+        <div className="py-2 lg:py-8">
+            <div className=" lg:flex flex-row items-center justify-between ">
+                <h1 className="text-xl font-light max-md:mb-2">{savingsGoal.goalName}</h1>
                 <div className="flex lg:w-1/2 items-center">
                     <div className="flex items-center gap-2 p-1 h-10 relative w-full rounded-lg justify-end bg-purple-200 overflow-clip">
                         <div

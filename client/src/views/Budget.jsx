@@ -9,7 +9,7 @@ const Budget = () => {
     const { budgets } = useBudgetContext();
 
     return (
-        <div className="mb-32">
+        <div className="">
             <div
                 className="glass-card p-4 mb-16"
                 id="budgetOverview">
@@ -20,7 +20,7 @@ const Budget = () => {
                 <BudgetOverview budgets={budgets} />
             </div>
             <div className="lg:flex flex-row gap-16">
-                <div className="p-4 glass-card lg:w-2/3 max-h-max">
+                <div className="p-4 glass-card lg:w-2/3 max-h-max mb-16">
                     <Header styles={"pb-4 border-b border-violet-500"}>
                         Categories
                     </Header>

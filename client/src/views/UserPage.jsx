@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Container from "../components/script-ui/Container";
-import Dashboard from "./Dashboard";
 import Transactions from "./Transactions";
 import Budget from "./Budget";
 import Goals from "./Goals";
@@ -40,7 +39,7 @@ const UserPage = () => {
         };
 
         fetchSavingsGoals();
-    }, []);
+    }, [dispatchSavingsGoals, user._id]);
 
     useEffect(() => {
         const fetchBudgets = async () => {
@@ -63,7 +62,7 @@ const UserPage = () => {
         };
 
         fetchBudgets();
-    }, []);
+    }, [dispatchBudget, user._id]);
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -85,7 +84,7 @@ const UserPage = () => {
                 });
         };
         fetchTransactions();
-    }, []);
+    }, [dispatchTransactions, user._id]);
 
     return (
         <Container>
@@ -96,10 +95,14 @@ const UserPage = () => {
                 <Sidebar />
                 <div className="w-full">
                     <Routes>
-                        <Route
+                        {/* <Route
                             default
                             path="/"
                             element={<Dashboard />}
+                        /> */}
+                        <Route
+                            path="/"
+                            element={<Transactions />}
                         />
                         <Route
                             path="/transactions"

@@ -63,48 +63,53 @@ const EditGoalForm = ({savingsGoal}) => {
     };
 
     return (
-        <form onSubmit={updateGoal} className="p-4 flex w-full items-center justify-between gap-8">
-            <div className="w-2/5 h-16 flex items-center gap-8">
-                <label
-                    className="text-slate-900 dark:text-slate-100 font-light"
-                    htmlFor={"editSavingsGoalName" + savingsGoal._id}>
-                    Name:
-                </label>
-                <input
-                    type="text"
-                    id={"editSavingsGoalName" + savingsGoal._id}
-                    className="h-8 w-2/3 rounded text-slate-900 px-2"
-                    value={goalName}
-                    onChange={(e) => {
-                        setGoalName(e.target.value);
-                    }}
-                />
-            </div>
-            <div className="w-2/5 h-16 flex items-center gap-8">
-                <label
-                    className="text-slate-900 dark:text-slate-100"
-                    htmlFor={"editGoalAmount" + savingsGoal._id}>
-                    Target:
-                </label>
-                <div>
-                    <span className="mr-2">$</span>
+        <div className="flex gap-8">
+            <form
+                onSubmit={updateGoal}
+                className="p-4 lg:flex w-full items-center justify-between gap-8">
+                <div className="w-full md:w-2/5 h-16 flex items-center gap-8">
+                    <label
+                        className="text-slate-900 dark:text-slate-100 font-light"
+                        htmlFor={"editSavingsGoalName" + savingsGoal._id}>
+                        Name:
+                    </label>
                     <input
                         type="text"
-                        id={"editGoalAmount" + savingsGoal._id}
-                        className="h-8 w-2/3 rounded text-slate-900 px-2"
-                        value={targetAmount}
+                        id={"editSavingsGoalName" + savingsGoal._id}
+                        className="h-8 rounded text-slate-900 px-2"
+                        value={goalName}
                         onChange={(e) => {
-                            setTargetAmount(e.target.value);
+                            setGoalName(e.target.value);
                         }}
                     />
                 </div>
-            </div>
+                <div className="h-16 flex items-center gap-8">
+                    <label
+                        className="text-slate-900 dark:text-slate-100 font-light"
+                        htmlFor={"editGoalAmount" + savingsGoal._id}>
+                        Target:
+                    </label>
+                    <div>
+                        <span className="mr-2">$</span>
+                        <input
+                            type="text"
+                            id={"editGoalAmount" + savingsGoal._id}
+                            className="h-8 rounded text-slate-900 px-2"
+                            value={targetAmount}
+                            onChange={(e) => {
+                                setTargetAmount(e.target.value);
+                            }}
+                        />
+                    </div>
+                </div>
+                <button
+                    type="submit"
+                    className="w-full md:w-48 h-8 font-medium bg-purple-500 text-slate-50 rounded">
+                    Update
+                </button>
+            </form>
             <button
-                type="submit"
-                className="w-48 h-8 font-medium bg-purple-500 text-slate-50 rounded">
-                Update
-            </button>
-            <button
+                className="max-md:self-end max-md:mb-4"
                 onClick={() => {
                     deleteGoal();
                 }}>
@@ -113,7 +118,7 @@ const EditGoalForm = ({savingsGoal}) => {
                     alt="delete"
                 />
             </button>
-        </form>
+        </div>
     );
 };
 

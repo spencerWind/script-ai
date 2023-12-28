@@ -4,10 +4,7 @@ const Sidebar = () => {
 
     return (
         <div className="max-lg:hidden">
-            <div className="flex flex-col text-lg gap-8 font-bold underline pr-16  py-32">
-                <Link to={"/"}>
-                    <p className="text-center">Dashboard</p>
-                </Link>
+            <div className="flex flex-col text-lg gap-8 font-bold underline pr-16">
                 <Link to={"/transactions"}>
                     <p className="text-center">Transactions</p>
                 </Link>

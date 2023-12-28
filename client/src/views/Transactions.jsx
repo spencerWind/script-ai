@@ -35,7 +35,7 @@ const Transactions = () => {
                     </div>
                 )}
             </div>
-            <div className="w-[512px]">
+            <div className="max-w-[512px]">
                 <div className=" h-max glass-card p-4 mb-16">
                     <Header styles={"pb-4 border-b border-violet-500"}>
                         Add Transaction

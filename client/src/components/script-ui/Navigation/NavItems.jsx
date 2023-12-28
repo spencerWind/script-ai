@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const NavItems = ({ children, mobile }) => {
     const [mobileSize, setMobileSize] = useState(false);
@@ -39,6 +40,16 @@ const NavItems = ({ children, mobile }) => {
                         ? `fixed z-10 top-0 right-[-100%] w-full h-screen ${backgroundColor} flex flex-col items-center gap-12 justify-center ${textColor}`
                         : "flex flex-row items-center gap-12 lg:gap-8"
                 }>
+                <Link to={"/transactions"}>
+                    <p>Transactions</p>
+                </Link>
+                <Link to="/budget">
+                    <p>Budget</p>
+                </Link>
+                <Link to="/goals">
+                    <p>Goals</p>
+                </Link>
+
                 {React.Children.map(children, (child) => {
                     if (React.isValidElement(child)) {
                         return React.cloneElement(child, {});

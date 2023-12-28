@@ -14,7 +14,7 @@ const App = () => {
     const { user } = useAuthContext();
 
     return (
-        <div className="min-h-screen bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+        <div className="min-h-screen bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-200 pb-32">
             <div className="m-auto">
                 <div className="flex flex-row">
                     <div className="w-full">

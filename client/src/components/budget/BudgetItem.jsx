@@ -11,8 +11,8 @@ const BudgetItem = ({ budget }) => {
 
     return (
         <div className="py-8">
-            <div className=" flex flex-row items-center justify-between ">
-                <div className="flex flex-row items-center gap-2 text-xl font-light">
+            <div className=" md:flex flex-row items-center justify-between ">
+                <div className="flex flex-row items-center gap-2 text-xl font-light max-md:mb-4">
                     <img
                         src={dollarIcon}
                         alt="icon"

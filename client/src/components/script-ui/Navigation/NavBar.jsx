@@ -6,7 +6,7 @@ const NavBar = ({children,}) => {
     const { user } = useAuthContext();
     return (
         <nav
-            className={`${user ? "" : "hidden"} flex items-center justify-between h-16`}>
+            className={`${user ? "" : "hidden"} flex items-center justify-between h-16 lg:mb-16`}>
             {children}
         </nav>
     );

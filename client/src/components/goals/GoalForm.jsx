@@ -49,11 +49,11 @@ const GoalForm = () => {
                     <label
                         className="font-light"
                         htmlFor="goalName">
-                        Name:
+                        Goal Name:
                     </label>
                     <input
                         required
-                        className="h-8 rounded px-2 w-full mt-1"
+                        className="h-8 rounded px-2 w-full mt-1 text-slate-900"
                         type="text"
                         id="goalName"
                         value={goalName}
@@ -70,7 +70,7 @@ const GoalForm = () => {
                         <span className="text-xl mr-2">$</span>
                         <input
                             required
-                            className="h-8 w-full rounded px-2 mt-1"
+                            className="h-8 w-full rounded px-2 mt-1 text-slate-900"
                             type="number"
                             id="targetAmount"
                             value={targetAmount}
@@ -90,7 +90,7 @@ const GoalForm = () => {
                         <span className="text-xl mr-2">$</span>
                         <input
                             required
-                            className="h-8 w-full rounded px-2 mt-1"
+                            className="h-8 w-full rounded px-2 mt-1 text-slate-900"
                             type="number"
                             id="currentAmount"
                             value={currentAmount}
@@ -108,7 +108,7 @@ const GoalForm = () => {
                     </label>
                     <input
                         required
-                        className="h-8 w-full rounded px-2 mt-1"
+                        className="h-8 w-full rounded px-2 mt-1 text-slate-900"
                         type="date"
                         id="deadline"
                         value={deadline}

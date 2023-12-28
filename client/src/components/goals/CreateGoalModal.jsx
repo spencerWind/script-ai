@@ -5,7 +5,7 @@ const CreateGoalModal = () => {
   return (
       <div
           id="createGoalModal"
-          className="fixed top-0 left-0 h-screen w-screen glass-card flex justify-center items-center hidden">
+          className="fixed top-0 left-0 h-screen w-screen glass-card flex justify-center items-center hidden dark:text-slate-100">
           <div className="p-4 glass-card w-[448px]">
               <div className="flex flex-row pb-4 border-b border-purple-500 items-center justify-between">
                   <Header>Create Goal</Header>

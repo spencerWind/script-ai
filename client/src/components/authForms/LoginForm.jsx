@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogIn } from "../../hooks/useLogIn";
+import Header from "../script-ui/Header";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -13,10 +14,8 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="rounded p-4 glass-card w-full max-w-[400px] h-max">
-            <h1 className="mb-6 text-green-600 font-semibold text-lg">
-                Log In
-            </h1>
+        <div className="rounded p-4 pb-8 glass-card md:w-[512px] h-full">
+            <Header styles={"pb-2 border-b border-b-purple-500 mb-4"}>Login</Header>
             <form onSubmit={loginUser}>
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-row gap-2 items-center">
@@ -55,7 +54,7 @@ const LoginForm = () => {
                     </div>
                     <input
                         disabled={isLoading}
-                        className="h-8 bg-green-500 text-slate-900 rounded font-bold"
+                        className="h-8 bg-purple-500 text-slate-100 rounded font-bold"
                         type="submit"
                         value="Login"
                     />

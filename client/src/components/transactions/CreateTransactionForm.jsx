@@ -89,7 +89,7 @@ const CreateTransactionForm = () => {
                         <input
                             required
                             type="text"
-                            className="h-8 w-full rounded px-2 mt-1"
+                            className="h-8 w-full rounded px-2 mt-1 text-slate-900"
                             id="transactionName"
                             value={transactionName}
                             onChange={(e) => {
@@ -103,23 +103,23 @@ const CreateTransactionForm = () => {
                             className="font-light">
                             Category:
                         </label>
-                            <select
-                                type="text"
-                                className="h-8 w-full rounded px-2 mt-1"
-                                id="categoryName"
-                                onChange={(e) => {
-                                    setCategoryName(e.target.value);
-                                }}>
-                                <option value="none">none</option>
-                                {budgets &&
-                                    budgets.map((budget) => (
-                                        <option
-                                            key={budget._id}
-                                            value={budget.categoryName}>
-                                            {budget.categoryName}
-                                        </option>
-                                    ))}
-                            </select>
+                        <select
+                            type="text"
+                            className="h-8 w-full rounded px-2 mt-1 text-slate-900"
+                            id="categoryName"
+                            onChange={(e) => {
+                                setCategoryName(e.target.value);
+                            }}>
+                            <option value="none">none</option>
+                            {budgets &&
+                                budgets.map((budget) => (
+                                    <option
+                                        key={budget._id}
+                                        value={budget.categoryName}>
+                                        {budget.categoryName}
+                                    </option>
+                                ))}
+                        </select>
                     </div>
                     <div>
                         <label
@@ -130,7 +130,7 @@ const CreateTransactionForm = () => {
                         <input
                             required
                             type="number"
-                            className="h-8 w-full rounded px-2 mt-1"
+                            className="h-8 w-full rounded px-2 mt-1 text-slate-900"
                             id="transactionAmount"
                             value={transactionAmount}
                             onChange={(e) => {
